@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 비교 연산자 사용 예
+      var a = 3;
+      var b = "3";
+      var c = 5;
+      var d = 3;
+
+      document.write((a == b) + "<br />"); // 3 == "3", true
+      document.write((a === b) + "<br />"); // 3 === "3", false
+      document.write((a != b) + "<br />"); // 3 != "3", false
+      document.write((a !== b) + "<br />"); // 3 !== "3", true
+      document.write((a > c) + "<br />"); // 3 > 5, false
+      document.write((a < c) + "<br />"); // 3 < 5, true
+      document.write((a >= c) + "<br />"); // 3 >= 5, false
+      document.write(a <= d); // 3 <= 3, true
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 일반 정수와 Bigint 데이터 형 사용 예
+      let a = 999999999999999; // 15개의 정수
+      let b = 9999999999999999; // 16개의 정수
+      let c = 9999999999999999n; // Bigint에서는 정수 끝에 n을 붙임
+
+      document.write(a + "<br />"); // 999999999999999
+      document.write(b + "<br />"); // 10000000000000000 → 값이 정확하게 저장되지 않음
+      document.write(c + "<br />"); // 9999999999999999
+    </script>
+  </body>
+</html>
