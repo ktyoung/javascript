@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 큰 따옴표 안에 큰 따옴표가 사용된 경우
+      /*
+      let text1 = "내 이름은 "홍길동" 입니다."; // 오류 발생
+      document.write(text1 + "<br />");
+      */
+
+      let text2 = '내 이름은 "홍길동" 입니다.'; // 이스케이프 문자 사용
+      document.write(text2);
+    </script>
+  </body>
+</html>
