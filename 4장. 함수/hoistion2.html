@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 익명 함수에서는 호이스팅이 적용되지 않는 경우의 예
+
+      let x;
+      x = mulFunc(10, 20); // 함수 호출
+      document.write(x);
+
+      // 함수 정의
+      const mulFunc = function (a, b) {
+        return a * b;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 블록 스코프에 사용된 변수
+
+      function func() {
+        if (true) {
+          let x = 10; // 변수는 if문 내, 블록 내부에서 선언됨.
+          // 이러한 변수는 블록 내부, 블록 스코프에서만 사용 가능함
+        }
+        document.write("함수 내부에서 사용 : " + x + "<br />"); // 오류 발생
+      }
+
+      func();
+    </script>
+  </body>
+</html>
