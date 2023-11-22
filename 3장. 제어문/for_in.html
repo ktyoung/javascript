@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const member = { id: "kdhong", name: "홍길동", age: 30 };
+
+      // 객체의 요소 수만큼 반복 루프가 진행됨.
+      // x는 member 객체의 키 이름을 가지므로, member 객체의 요소들은 member[x]로 접근 가능.
+      for (let x in member) {
+        document.write(member[x] + "<br />");
+      }
+    </script>
+  </body>
+</html>
