@@ -695,3 +695,293 @@ for (let i = 1; i <= 10; i++) {
 ```
 
 ---
+
+
+## 4장. 함수
+## 4.1 함수란?  
+- 프로그래밍 언어에서 함수란 `어떤 역할을 수행하는 것` 임.
+- 함수를 사용하는 가장 큰 이유는 재사용이 가능하다는 것임.
+### 4.1.1 함수 정의와 호출  
+```js
+// 함수 정의와 호출 예
+
+// 함수 정의
+function hello() {
+	document.write("안녕하세요. <br />");
+}
+
+hello(); // 함수 호출
+hello(); // 함수 호출
+hello(); // 함수 호출
+```
+### 4.1.2 매개변수와 반환 값  
+- 함수는 매개변수를 통해 변수나 데이터 값을 전달 받을 수 있음.
+```js
+// 함수의 매개변수와 반환 값 사용 예
+
+// r은 매개변수(parameter)
+function circleArea(r) {
+	let result = r * r * 3.14;
+	return result; // 함수 값의 반환
+}
+
+let area = circleArea(8); // 8을 인자로 전달하고, 반환 값을 area 변수에 저장
+document.write("원의 넓이 : " + area);
+```
+
+---
+## 4.2 익명 함수  
+### 4.2.1 익명 함수란?  
+- `익명 함수`란 말 그대로 함수 이름이 없는 함수를 의미함.
+- 미리 함수 이름을 정하지 않고 필요에 의해 함수를 만들 때 사용함.
+```js
+// 익명 함수 사용 예
+
+// 매개변수 두 개를 곱한 값을 반환하는 함수(익명 함수)를 변수 mul에 저장
+const mul = function (a, b) {
+	return a * b;
+};
+
+let result = mul(5, 8); // 호출을 할 때는 변수 mul이 함수 명으로 사용됨
+document.write("결과 : " + result);
+```
+### 4.2.2 자기호출 익명 함수  
+- `자기호출 익명 함수`는 함수 정의와 호출이 동시에 일어나, 바로 실행이 되는 함수임.
+```js
+// 익명 함수를 괄호로 감싼 형태로 사용됨
+( function() {
+	...
+} ) ();
+```
+
+```js
+// 자기호출 익명 함수 사용 예
+
+// 익명 함수를 변수에 저장하거나 호출하지 않아도, 자기 자신을 호출하여 바로 실행됨
+(function () {
+	document.write("안녕하세요! <br />");
+})();
+```
+### 4.2.3 화살표 함수  
+- `화살표 함수`는 `익명 함수`를 축약해서 표현하는 형태임.
+- `익명 함수`에서 사용되는 키워드 `function`, `return`, `{}` 대신 `=>` 기호를 사용함.
+```js
+// 화살표 함수 사용 예
+
+const z = (x, y) => x + y;
+document.write(z(10, 20)); // 화살표 함수도 일반 함수처럼 호출함
+```
+### 4.2.4 호이스팅  
+- 자바스크립트는 기본적으로 변수나 함수 정의부를 프로그램 제일 앞으로 끌어올리는데, 이를 `호이스팅(hoisting)`이라고 함.
+- `호이스팅`이란 우리 말로 "끌어올리기"라는 의미임.
+- C, 자바 등의 프로그래밍 언어에서 아래와 같은 프로그램은 오류를 발생시키지만 (함수 호출 이전에 함수가 정의되어야 하므로), 자바스크립트에서는 `호이스팅` 기능으로 정상적으로 동작함.
+```js
+// 함수 호출이 함수 정의보다 먼저 일어난 경우의 예
+
+let x;
+x = mulFunc(10, 20); // 함수 호출
+document.write(x);
+
+// 함수 정의
+function mulFunc(a, b) {
+	return a * b;
+}
+```
+
+- `익명 함수`의 경우에는 반드시 함수 호출 이전에 `익명 함수`를 선언하여 사용해야 함.
+- `익명 함수`는 일반적인 함수와는 달리, 함수를 변수에 저장해서 사용하는 형태이기 때문.
+```js
+// 익명 함수에서는 호이스팅이 적용되지 않는 경우의 예
+
+let x;
+x = mulFunc(10, 20); // 함수 호출
+document.write(x);
+
+// 함수 정의
+const mulFunc = function (a, b) {
+	return a * b;
+};
+```
+
+- `호이스팅` 기능은 변수 키워드(`var`, `let`, `const`)에 따라 달라지고, 데이터 형에 따라 동작하지 않기도 함.
+- 따라서, 프로그래밍을 할 때는 함수 정의를 먼저 하는 것을 권고함.
+- 변수, 객체, 클래스 등을 사용할 때에도 선언이나 정의를 먼저 한 다음 사용하는 것이 좋은 습관임.
+---
+## 4.3 함수의 매개변수  
+### 4.3.1 매개변수의 기본 값  
+- 자바스크립트 함수에서는 인수와 매개변수의 개수가 일치하지 않아도 오류가 발생하지 않음.
+- 그러나, 함수 호출에서 전달되는 인수의 개수와 함수 정의에서 사용되는 매개변수의 개수가 다른 경우에는, 매개변수의 `기본 값(default value)`을 설정하여 사용해야 함.
+```js
+// 매개변수의 기본 값 사용 예
+function addFunc(a, b = 5) {
+	return a + b;
+}
+
+document.write(addFunc(10)); // 10 + 5 결과를 반환
+```
+### 4.3.2 나머지 매개변수  
+- 자바스크립트에서는 함수 정의 시 매개변수의 개수를 미리 정하지 않고 무한대로 설정할 수 있음.
+- 이 때 사용되는 매개변수를 `나머지 매개변수(rest parameter)`라고 하며, `...` 기호를 사용함.
+```js
+// 나머지 매개변수 사용 예
+
+function sumScores(...scores) {
+	let sum = 0;
+	for (let score of scores) {
+		sum += score;
+	}
+	
+	return sum;
+}
+
+let sum = sumScores(70, 80, 90, 100);
+document.write("합계 : " + sum);
+```
+### 4.3.3 Arguments 객체  
+- 자바스크립트 함수는 `arguments` 객체를 내장하고 있으며, 이 객체는 함수 호출 시 전달되는 인수들을 배열 형태로 저장하고 있음.
+- `arguments` 객체를 이용하여 함수 호출 시 여러 개의 인수를 함수에 전달할 수 있음.
+```js
+// arguments 객체 사용 예
+
+function maxScores() {
+	let max = -Infinity;
+	for (let i = 0; i < arguments.length; i++) {
+		if (arguments[i] > max) {
+			max = arguments[i];
+		}
+	}
+
+	return max;
+}
+
+let max_score = maxScores(87, 79, 93, 75, 68, 90, 88);
+document.write("최고 점수 : " + max_score);
+```
+
+---
+## 4.4 자바스크립트 스코프  
+- `스코프(scope)`는 변수에 접근할 수 있는 유효 범위를 의미함.
+### 4.4.1 전역 스코프  
+- 프로그램 내 전체 영역에서 사용 가능함. `전역 스코프`에서 사용되는 변수를 `전역 변수`라고 함.
+```js
+// 전역 변수 사용 예
+
+let x = 10;
+function func() {
+	document.write("함수 내부에서 사용 : " + x + "<br />");
+}
+
+func();
+document.write("함수 외부에서 사용 : " + x);
+```
+### 4.4.2 함수 스코프  
+- 함수 내에서만 사용 가능함. `함수 스코프`에서 사용되는 변수를 `지역 변수`라고 함.
+```js
+// 지역 변수 사용 예
+
+function func() {
+	let x = 10;
+	document.write("함수 내부에서 사용 : " + x + "<br />");
+}
+
+func();
+document.write("함수 외부에서 사용 : " + x); // 오류 발생
+```
+### 4.4.3 블록 스코프  
+- 블록(`{}`) 내에서 사용 가능함. 특정 블록(`{}`) 내에서 `let`이나 `const`로 선언한 변수는 블록 외부에서 사용할 수 없음.
+```js
+// 블록 스코프에 사용된 변수
+
+function func() {
+	if (true) {
+		let x = 10; // 변수는 if문 내, 블록 내부에서 선언됨
+								// 이러한 변수는 블록 내부, 블록 스코프에서만 사용 가능함
+	}
+	document.write("함수 내부에서 사용 : " + x + "<br />"); // 오류 발생
+}
+
+func();
+```
+---
+## 4.5 클로저  
+- 전역 변수는 어디서나 값이 변경될 수 있기 때문에 보안에 취약하고 오류를 발생시킬 가능성을 가지고 있음.
+- `클로저(closure)`는 전역 변수가 아닌 변수를, 전역 변수와 같은 방식으로 동작하지만 함부로 그 값을 변경할 수 없도록 변수를 "사유화"하는 방법을 제공함.
+### 4.5.1 클로저란?  
+- `클로저`는 함수가 자신이 생성될 때의 환경을 '기억'하고, 이 환경에 있는 변수에 접근할 수 있게 하는 자바스크립트의 특성임.
+- 아래 예제에서, `increase()` 함수 호출 후 실행이 종료되어도 함수 내에서 사용된 지역 변수 `counter`가 내부의 익명 함수에서 사용되고 있기 때문에 그 값을 계속 유지하고 있음.
+```html
+<body>
+<!-- 클로저를 이용한 카운터 -->
+
+<button onclick="incCounter()">+</button>
+<p id="show">0</p>
+<script>
+	// ① 자기호출 익명 함수 선언
+	// increase라는 상수에 자기호출 익명 함수를 할당
+	// 이 함수는 바로 실행되며, 내부에서 counter라는 변수를 0으로 초기화
+	// 이 함수는 내부 함수를 반환함. 이 내부 함수는 counter 값을 1 증가시키고, 증가된 값을 반환함
+
+	// ③ increase() 함수는 counter를 1 증가시키고 그 값을 반환함
+	const increase = (function () {
+		let counter = 0;
+
+		return function () {
+			counter += 1;
+			return counter;
+		};
+	})();
+
+	// ② 버튼을 클릭하면 incCounter()가 호출되면서, increase() 함수가 호출됨
+	function incCounter() {
+		document.getElementById("show").innerHTML = increase();
+	}
+</script>
+</body>
+```
+
+---
+## 4.6 예외 처리  
+### 4.6.1 try~ catch 문  
+- `try~ chath` 문은 오류가 있음직한 코드 블록에 대해 테스트를 시도하며, 오류를 처리하는 데 사용됨.
+- `try` 블록에서 오류가 발생하면 `catch` 블록 내부의 코드를 실행함.
+```js
+// try~ catch 문 사용 예
+
+try {
+	// 테스트할 코드
+	alerttttt("안녕하세요."); // 오류 발생
+	document.write("test!");
+} catch (e) {
+	// 오류 처리 코드
+	document.write(e.message);
+}
+```
+### 4.6.2 try~ catch~ finally 문  
+- `try~ catch~ finally` 문에서 `finally`는 `try~` 블록의 결과와 상관없이 무조건 실행됨.
+```js
+// try~ catch~ finally 문 사용 예
+
+function simpleTryCatchExample() {
+	try {
+		// 시도할 코드
+		console.log("try 블록 내부의 코드 실행 중...");
+
+		// 예외를 강제로 발생시킴
+		throw new Error("예제 예외 발생!");
+
+		// 예외가 발생하면 이 부분은 실행되지 않음
+		console.log("예외 발생 후 이 코드는 실행되지 않음.");
+	} catch (error) {
+		// 예외 처리
+		console.log("catch 블록: 예외가 포착됨 -", error.message);
+	} finally {
+		// 항상 실행되는 코드
+		console.log("finally 블록: 이 코드는 항상 실행됩니다.");
+	}
+}
+
+// 함수 호출
+simpleTryCatchExample();
+```
+
+---
