@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 나머지 매개변수 사용 예
+
+      function sumScores(...scores) {
+        let sum = 0;
+        for (let score of scores) {
+          sum += score;
+        }
+        return sum;
+      }
+
+      let sum = sumScores(70, 80, 90, 100);
+      document.write("합계 : " + sum);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 지역 변수 사용 예
+
+      function func() {
+        let x = 10;
+        document.write("함수 내부에서 사용 : " + x + "<br />");
+      }
+
+      func();
+      document.write("함수 외부에서 사용 : " + x); // 오류 발생
+    </script>
+  </body>
+</html>
