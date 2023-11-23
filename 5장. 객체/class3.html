@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 클래스의 정적 메서드
+
+      class Member {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        getName() {
+          return "나의 이름은 " + this.name + "입니다.";
+        }
+        // 클래스에서 정적 메서드를 사용할 때에는 static 키워드를 붙인다
+        // 정적 메서드는 객체에 소속된 것이 아닌 클래스 자체에 속하는 메서드이다
+        static getCountry() {
+          return "한국인입니다.";
+        }
+      }
+
+      const mem1 = new Member("홍길동", 30);
+
+      let text = "";
+      text += mem1.getName() + "<br />";
+      // 정적 메서드를 호출할 때는 클래스 이름 옆에 . 연산자를 사용한다
+      text += Member.getCountry() + "<br />";
+      // text += mem1.getCountry() + "<br />"; // 오류 발생
+
+      document.write(text);
+    </script>
+  </body>
+</html>

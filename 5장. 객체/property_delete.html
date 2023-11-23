@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체에 프로퍼티 삭제하기
+
+      const member = {
+        id: "kdhong",
+        name: "홍길동",
+        age: 30,
+      };
+      // member 객체의 id 프로퍼티 삭제
+      delete member.id;
+
+      let text = "";
+      for (x in member) {
+        text += "키 : " + x + ", 값 : " + member[x] + "<br />";
+      }
+      document.write(text);
+    </script>
+  </body>
+</html>

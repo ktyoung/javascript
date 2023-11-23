@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 클래스 상속
+
+      // 클래스 Member 정의
+      class Member {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        getName() {
+          return "나의 이름은 " + this.name + "입니다.";
+        }
+      }
+
+      // 클래스 Student는 클래스 Member를 상속 받는다
+      // 클래스 Student에서도 클래스 Member의 프로퍼티와 메서드를 사용할 수 있게 된다
+      class Student extends Member {
+        constructor(name, age, school) {
+          super(name, age); // 부모 클래스(Member)의 생성자(constructor) 호출
+          this.school = school;
+        }
+
+        intro() {
+          return this.getName() + " " + this.school + " 학생입니다.";
+        }
+      }
+
+      // new 연산자를 이용하여 클래스 Student로부터 객체 stud1 생성
+      // 객체 stud1에서는 클래스 Student와 클래스 Member의 자원을 사용할 수 있다
+      const stud1 = new Student("홍길동", 20, "길동대학교");
+
+      // 클래스 Student의 intro() 메서드 호출
+      document.write(stud1.intro());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // For In 문으로 객체의 프로퍼티 읽기
+      const member = {
+        id: "kdhong",
+        name: "홍길동",
+        age: 30,
+      };
+
+      let text = "";
+      // x는 프로퍼티의 키 이름(id, name, age)을 가짐
+      for (x in member) {
+        text += member[x] + "<br />";
+      }
+      document.write(text);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 생성자 함수의 객체 생성 예
+
+      // 생성자 함수 Member는 세 개의 매개변수를 가지고 있으며,
+      // 이들은 new 연산자를 이용하여 생성자 함수 호출 시 인수를 전달받는 데 사용된다
+      function Member(id, name, age) {
+        this.id = id; // this 키워드는 객체 자신을 의미한다
+        this.name = name;
+        this.age = age;
+      }
+
+      // new 연산자를 이용해 생성자 함수 Member()를 호출하여 mem1, mem2, mem3 객체 생성
+      const mem1 = new Member("kdhong", "홍길동", 25);
+      const mem2 = new Member("kdkang", "강길동", 39);
+      const mem3 = new Member("kdchoi", "최길동", 43);
+
+      let text = "";
+
+      // 객체의 프로퍼티에 접근
+      text += mem1.name + "<br />";
+      text += mem2.name + "<br />";
+      text += mem3.name;
+
+      document.write(text);
+    </script>
+  </body>
+</html>
