@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체의 생성과 프로퍼티 읽기
+
+      // 객체 member 생성 (키: 값 형태)
+      const member = {
+        id: "kdhong",
+        name: "홍길동",
+        age: 30,
+      };
+
+      // . 연산자로 member의 프로퍼티 읽기
+      let text1 = member.id + " " + member.name + " " + member.age;
+      document.write(text1 + "<br />");
+      // 대괄호([])로 member의 프로퍼티 읽기
+      let text2 = member["id"] + " " + member["name"] + " " + member["age"];
+      document.write(text2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 중첩된 객체의 예
+
+      const obj1 = {
+        id: "kdhong",
+        name: "홍길동",
+        // hobby 프로퍼티는 값으로 객체를 가진다
+        hobby: {
+          hobby1: "게임",
+          hobby2: "탁구",
+          hobby3: "기타",
+        },
+      };
+
+      let text = "";
+
+      // 중첩 객체에 접근하기
+      text += obj1.hobby.hobby1 + "<br />";
+      text += obj1.hobby.hobby2 + "<br />";
+      text += obj1.hobby.hobby3;
+
+      document.write(text);
+    </script>
+  </body>
+</html>

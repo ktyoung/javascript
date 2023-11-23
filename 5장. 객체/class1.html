@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 자바스크립트 클래스 사용 예
+
+      class Member {
+        // 생성자 constructor()는 new 연산자에 의해 자동으로 호출되며,
+        // 객체의 기본 상태를 설정하는 데 사용된다
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        // 클래스 메서드 getAge()는 나이를 반환한다
+        getAge() {
+          return "나이는 " + this.age + "살 입니다.";
+        }
+      }
+
+      // new 연산자를 이용하여 mem1 객체를 생성한다
+      // 이 때, 생성자 constructor()가 자동 호출되어 mem1의 name과 age 프로퍼티는 "홍길동", 30으로 설정된다
+      const mem1 = new Member("홍길동", 30);
+
+      let text = "";
+
+      // mem1 객체에 접근할 때는 일반 객체에서와 같이 . 연산자가 사용된다
+      text += mem1.name + "<br />";
+      text += mem1.getAge();
+
+      document.write(text);
+    </script>
+  </body>
+</html>

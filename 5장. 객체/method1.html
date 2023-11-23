@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체의 메서드 사용 예
+
+      const cat = {
+        name: "로키",
+        species: "랙돌",
+        color: "흰색",
+        age: 3,
+
+        // 메서드 intro()를 정의함
+        // this는 현재 이 메서드가 소속된 객체(cat)을 가리킴
+        intro: function () {
+          return "나의 이름은 " + this.name + "입니다.";
+        },
+      };
+
+      // cat 객체의 intro() 메서드 호출
+      document.write(cat.intro());
+    </script>
+  </body>
+</html>

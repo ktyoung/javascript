@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체에 메서드 추가하기
+
+      const cat = {
+        name: "로키",
+        species: "랙돌",
+        color: "흰색",
+        age: 3,
+      };
+
+      // cat 객체에 getAge() 메서드 추가
+      cat.getAge = function () {
+        return "나이는 " + this.age + "살 입니다.";
+      };
+
+      // cat 객체의 getAge() 메서드 호출
+      document.write(cat.getAge());
+    </script>
+  </body>
+</html>

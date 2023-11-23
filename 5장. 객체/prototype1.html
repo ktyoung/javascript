@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 생성자 함수 생성 후 메서드 추가
+
+      function Member(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+      }
+
+      // 이미 생성된 생성자 함수 Member()에는 새로운 프로퍼티를 추가할 수 없다
+      Member.company = "현대";
+
+      const mem1 = new Member("kdhong", "홍길동", 25);
+
+      let text = "";
+      text += mem1.name + "<br />";
+      text += mem1.company; // undefined
+
+      document.write(text);
+    </script>
+  </body>
+</html>

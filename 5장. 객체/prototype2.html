@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 프로토타입을 이용한 프로퍼티와 메서드 추가
+
+      function Member(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+      }
+      // 생성자 함수 Member()에 "현대"를 값으로 하는 새로운 프로퍼티 company 추가
+      Member.prototype.company = "현대";
+      // 생성자 함수 Member()에 새로운 메서드 getId() 추가
+      Member.prototype.getId = function () {
+        return "아이디는 " + this.id + "입니다.";
+      };
+
+      const mem1 = new Member("kdhong", "홍길동", 25);
+
+      let text = "";
+      text += mem1.company + "<br />";
+      text += mem1.getId();
+
+      document.write(text);
+    </script>
+  </body>
+</html>
