@@ -985,3 +985,397 @@ simpleTryCatchExample();
 ```
 
 ---
+
+## 5장. 객체
+## 5.1 객체 생성  
+- 객체는 `프로퍼티(property)`와 `메서드(method)`의 집합임.
+- 객체의 `프로퍼티`는 `변수`와 같은 개념이고, `메서드`는 `함수`와 거의 동일한 것임.
+- 즉, 특정 객체에 소속된 변수와 함수를 그 객체의 `프로퍼티`와 `메서드`라 부름.
+- 숫자(Number), 문자열(String), 함수(Function), 배열(Array), 날짜(Date) 등 모든 것이 객체임.
+```js
+// 객체의 생성과 프로퍼티 읽기
+
+// 객체 member 생성 (키: 값 형태)
+const member = {
+	id: "kdhong",
+	name: "홍길동",
+	age: 30,
+};
+
+// . 연산자로 member의 프로퍼티 읽기
+let text = member.id + " " + member.name + " " + member.age;
+document.write(text);
+```
+
+---
+## 5.2 프로퍼티  
+### 5.2.1 For In 문으로 프로퍼티 읽기  
+- `For In` 문으로 객체에 존재하는 프로퍼티의 키와 값을 쉽게 반복적으로 읽어올 수 있음.
+```js
+// For In 문으로 객체의 프로퍼티 읽기
+
+const member = {
+	id: "kdhong",
+	name: "홍길동",
+	age: 30,
+};
+
+let text = "";
+
+// x는 프로퍼티의 키 이름(id, name, age)을 가짐
+for (x in member) {
+	text += member[x] + "<br />";
+}
+document.write(text);
+```
+### 5.2.2 프로퍼티 추가하기  
+```js
+// 객체에 프로퍼티 추가하기
+
+const member = {
+	id: "kdhong",
+	name: "홍길동",
+	age: 30,
+};
+
+// member 객체에 email 프로퍼티 추가
+member.email = "kdhong@korea.com";
+
+let text = "";
+
+for (x in member) {
+	text += "키 : " + x + ", 값 : " + member[x] + "<br />";
+}
+document.write(text);
+```
+### 5.2.3 프로퍼티 삭제하기  
+- 특정 프로퍼티를 삭제하는 데에는 `delete` 키워드를 이용함.
+```js
+// 객체에 프로퍼티 삭제하기
+
+const member = {
+	id: "kdhong",
+	name: "홍길동",
+	age: 30,
+};
+
+// member 객체의 id 프로퍼티 삭제
+delete member.id;
+
+let text = "";
+
+for (x in member) {
+	text += "키 : " + x + ", 값 : " + member[x] + "<br />";
+}
+document.write(text);
+```
+### 5.2.4 중첩 객체  
+- `중첩된 객체(nested object)`는 객체 안에 객체를 포함함.
+```js
+// 중첩된 객체의 예
+
+const obj1 = {
+	id: "kdhong",
+	name: "홍길동",
+	
+	// hobby 프로퍼티는 값으로 객체를 가진다
+	hobby: {
+		hobby1: "게임",
+		hobby2: "탁구",
+		hobby3: "기타",
+	},
+};
+
+let text = "";
+
+// 중첩 객체에 접근하기
+text += obj1.hobby.hobby1 + "<br />";
+text += obj1.hobby.hobby2 + "<br />";
+text += obj1.hobby.hobby3;
+
+document.write(text);
+```
+
+---
+## 5.3 메서드  
+### 5.3.1 메서드란?  
+- `메서드` 란 객체에 소속된 함수를 말함.
+- `프로퍼티`는 객체의 상태를 의미하고, `메서드`는 객체의 동작을 정의한다고 할 수 있음.
+```js
+// 객체의 메서드 사용 예
+
+const cat = {
+	name: "로키",
+	species: "랙돌",
+	color: "흰색",
+	age: 3,
+
+	// 메서드 intro()를 정의함
+	// this는 현재 이 메서드가 소속된 객체(cat)을 가리킴
+	intro: function () {
+		return "나의 이름은 " + this.name + "입니다.";
+	},
+};
+
+// cat 객체의 intro() 메서드 호출
+document.write(cat.intro());
+```
+### 5.3.2 메서드 추가하기  
+```js
+// 객체에 메서드 추가하기
+
+const cat = {
+	name: "로키",
+	species: "랙돌",
+	color: "흰색",
+	age: 3,
+};
+
+// cat 객체에 getAge() 메서드 추가
+cat.getAge = function () {
+	return "나이는 " + this.age + "살 입니다.";
+};
+
+// cat 객체의 getAge() 메서드 호출
+document.write(cat.getAge());
+```
+### 5.3.3 내장 메서드  
+- 자바스크립트에는 자체적으로 만들어둔 `내장 객체(built-in object)`가 있고, 이 `내장 객체`들은 `내장 메서드(built-in method)`를 제공함.
+- 많이 사용되는 `내장 객체`에는 `Number` 객체, `String` 객체, `Array` 객체, `Date` 객체, `Math` 객체 등이 있음.
+```js
+// Number 객체의 toFiexd() 메서드 사용 예
+// toFixed() 메서드는 소수점 이하 부분을 반올림한 값을 반환한다
+
+let x = 12.46245;
+
+// toFixed(1)은 소수점 둘째 자리에서 반올림을 한, 소수점 첫째 자리까지의 값을 구한다
+document.write(x.toFixed(1) + "<br />");
+
+// toFixed(3)은 소수점 넷째 자리에서 반올림을 한, 소수점 셋째 자리까지의 값을 구한다
+document.write(x.toFixed(3));
+```
+
+```js
+// String 객체의 toUpperCase() 메서드 사용 예
+// toUpperCase() 메서드는 영문 소문자를 영문 대문자로 변경할 때 사용한다
+
+let str = "hello, world!";
+
+document.write(str.toUpperCase());
+```
+---
+## 5.4 생성자 함수  
+### 5.4.1 생성자 함수란?  
+- `생성자 함수(constructor function)`는 일반 함수와 기능적인 차이는 없음.
+- 그러나, 일반 함수와는 달리 `생성자 함수`는 `new` 연산자와 함께 객체를 생성하기 위해 사용됨.
+- `생성자 함수`를 정의할 때에는 일반 함수와 구분하기 위해 첫 글자를 영문 대문자로 시작함.
+```js
+// 생성자 함수의 객체 생성 예
+
+// 생성자 함수 Member()는 세 개의 매개변수를 가지고 있으며,
+// 이들은 new 연산자를 이용하여 생성자 함수 호출 시 인수를 전달받는 데 사용된다
+function Member(id, name, age) {
+	this.id = id;
+	this.name = name;
+	this.age = age;
+}
+
+// new 연산자를 이용해 생성자 함수 Member()를 호출하여 mem1, mem2, mem3 객체 생성
+const mem1 = new Member("kdhong", "홍길동", 25);
+const mem2 = new Member("kdkang", "강길동", 39);
+const mem3 = new Member("kdchoi", "최길동", 43);
+
+let text = "";
+
+// 객체의 프로퍼티에 접근
+text += mem1.name + "<br />";
+text += mem2.name + "<br />";
+text += mem3.name;
+
+document.write(text);
+```
+### 5.4.2 생성자 함수의 메서드  
+```js
+// 생성자 함수에서 메서드 사용 예
+
+function Member(id, name, age) {
+	this.id = id;
+	this.name = name;
+	this.age = age;
+	
+	// 생성자 함수 Member()의 getName() 메서드 정의
+	this.getName = function () {
+		// this.name은 생성자 함수로 생성되는 객체 자신의 프로퍼티 name을 의미한다
+		return "나의 이름은 " + this.name + "입니다.";
+	};
+}
+
+const mem1 = new Member("kdhong", "홍길동", 25);
+
+let text = "";
+text += mem1.getName();
+
+document.write(text);
+```
+
+---
+## 5.5 프로토타입  
+- C++, 자바와 같은 클래스 기반의 객체지향 프로그래밍 언어와 달리, 자바스크립트는 `프로토타입(prototype)`을 기반으로 객체지향 프로그래밍을 할 수 있음.
+- 자바스크립트에서는 클래스 없이도 `프로토타입`을 이용하여 객체를 생성할 수 있음.
+- 모든 자바스크립트 객체는 `프로토타입`으로부터 프로퍼티와 메서드를 상속 받음.
+- `프로토타입`을 이용하면 생성자 함수에 의해 생성된 모든 객체들에 새로운 프로퍼티와 메서드를 추가할 수 있음.
+```js
+// 생성자 함수 생성 후 메서드 추가 (잘못된 방법)
+
+function Member(id, name, age) {
+	this.id = id;
+	this.name = name;
+	this.age = age;
+}
+
+// 이미 생성된 생성자 함수 Member()에는 새로운 프로퍼티를 추가할 수 없다
+Member.company = "현대";
+
+const mem1 = new Member("kdhong", "홍길동", 25);
+
+let text = "";
+text += mem1.name + "<br />";
+text += mem1.company; // undefined
+
+document.write(text);
+```
+
+- `프로토타입`을 이용하여 기존의 생성자 함수에 프로퍼티와 메서드를 추가하는 예
+- `Member` 객체는 `Member.prototype`으로부터 프로퍼티와 메스드를 상속 받음.
+```js
+// 프로토타입을 이용한 프로퍼티와 메서드 추가
+
+function Member(id, name, age) {
+	this.id = id;
+	this.name = name;
+	this.age = age;
+}
+
+// 생성자 함수 Member()에 "현대"를 값으로 하는 새로운 프로퍼티 company 추가
+Member.prototype.company = "현대";
+// 생성자 함수 Member()에 새로운 메서드 getId() 추가
+Member.prototype.getId = function () {
+	return "아이디는 " + this.id + "입니다.";
+};
+
+const mem1 = new Member("kdhong", "홍길동", 25);
+
+let text = "";
+text += mem1.company + "<br />";
+text += mem1.getId();
+
+document.write(text);
+```
+
+---
+## 5.6 클래스  
+- `클래스(class)`는 객체를 생성하기 위한 틀(템플릿)임.
+- 자바스크립트에서 `클래스`는 함수와 유사한 구조를 가지며 `클래스`는 특별한 함수라고 볼 수 있음.
+### 5.6.1 클래스 기본 구조  
+```js
+// 자바스크립트 클래스 사용 예
+
+class Member {
+	// 생성자 constructor()는 new 연산자에 의해 자동으로 호출되며,
+	// 객체의 기본 상태를 설정하는 데 사용된다
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	// 클래스 메서드 getAge()는 나이를 반환한다
+	getAge() {
+		return "나이는 " + this.age + "살 입니다.";
+	}
+}
+
+// new 연산자를 이용하여 mem1 객체를 생성한다
+// 이 때, 생성자 constructor()가 자동 호출되어 mem1의 name과 age 프로퍼티는 "홍길동", 30으로 설정된다
+const mem1 = new Member("홍길동", 30);
+
+let text = "";
+
+// mem1 객체에 접근할 때는 일반 객체에서와 같이 . 연산자가 사용된다
+text += mem1.name + "<br />";
+text += mem1.getAge();
+
+document.write(text);
+```
+
+### 5.6.2 클래스 상속  
+- `클래스 상속`은 다른 클래스에 있는 프로퍼티와 메서드를 상속받아 사용하는 것을 말함.
+- 부모 클래스가 가지고 있는 자원과 기능을 확장하여 사용할 수 있음.
+- 클래스 상속에는 `extends` 키워드를 사용함.
+```js
+// 클래스 상속
+
+// 클래스 Member 정의
+class Member {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	getName() {
+		return "나의 이름은 " + this.name + "입니다.";
+	}
+}
+
+// 클래스 Student는 클래스 Member를 상속 받는다
+// 클래스 Student에서도 클래스 Member의 프로퍼티와 메서드를 사용할 수 있게 된다
+class Student extends Member {
+	constructor(name, age, school) {
+		super(name, age); // 부모 클래스(Member)의 생성자(constructor) 호출
+		this.school = school;
+	}
+	intro() {
+		return this.getName() + " " + this.school + " 학생입니다.";
+	}
+}
+
+// new 연산자를 이용하여 클래스 Student로부터 객체 stud1 생성
+// 객체 stud1에서는 클래스 Student와 클래스 Member의 자원을 사용할 수 있다
+const stud1 = new Student("홍길동", 20, "길동대학교");
+
+// 클래스 Student의 intro() 메서드 호출
+document.write(stud1.intro());
+```
+### 5.6.3 정적 메서드  
+- `정적 메서드(static method)`는 클래스 자체에서 정의되며, 객체를 통해 호출하는 것이 아니라 클래스에서 호출하여 사용하는 메서드임.
+- `정적 메서드`는 클래스의 별도 인스턴스를 만들지 않고도, 클래스 이름만으로 바로 사용할 수 있는 간편한 도구 같은 기능을 제공
+- 예를 들어, `Math.random()` 같은 경우가 이에 해당하는데, `Math`는 클래스이고 `random`은 그 안의 정적 메서드임.
+```js
+// 클래스의 정적 메서드
+
+class Member {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	getName() {
+		return "나의 이름은 " + this.name + "입니다.";
+	}
+
+	// 클래스에서 정적 메서드를 사용할 때에는 static 키워드를 붙인다
+	// 정적 메서드는 객체에 소속된 것이 아닌 클래스 자체에 속하는 메서드이다
+	static getCountry() {
+		return "한국인입니다.";
+	}
+}
+
+const mem1 = new Member("홍길동", 30);
+
+let text = "";
+text += mem1.getName() + "<br />";
+// 정적 메서드를 호출할 때는 클래스 이름 옆에 . 연산자를 사용한다
+text += Member.getCountry() + "<br />";
+// text += mem1.getCountry() + "<br />"; // 오류 발생
+
+document.write(text);
+```
+
+---
