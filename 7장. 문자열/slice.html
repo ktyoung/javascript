@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // slice() 메서드로 문자열 추출하기
+
+      let str1 = "가는 말이 고와야 오는 말이 곱다.";
+
+      document.write(str1.slice(3, 8) + "<br />"); // 말이 고와 → 인덱스 3부터 7까지 추출
+      document.write(str1.slice(3) + "<br />"); // 말이 고와야 오는 말이 곱다. → 인덱스 3부터 끝까지 추출
+      document.write(str1.slice(-5)); // 이 곱다. → 끝에서 5개를 추출
+    </script>
+  </body>
+</html>
