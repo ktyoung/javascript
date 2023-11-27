@@ -1379,3 +1379,204 @@ document.write(text);
 ```
 
 ---
+
+## 6장. 숫자
+## 6.1 자바스크립트의 숫자  
+- 자바스크립트에서 모든 숫자는 64비트의 부동 소수점으로 저장됨.
+- 자바스크립트에서 컴퓨터 메모리에 부동 소수점으로 저장된 숫자는 정수와 소수점이 있는 숫자 두 가지 형태로 사용됨.
+- 매우 큰 수와 매우 작은 수를 표현할 때는 지수가 사용됨.
+### 6.1.1 숫자와 문자열 연산  
+- `3`과 `"3"`은 전혀 다른 데이터인데, `3`은 숫자이고 `"3"`은 문자열이기 때문임.
+- 숫자 `3`이 메모리에 저장될 때에는 2진수로 변환되어 저장되며, 문자열 `"3"`은 UTF-16 형태로 저장됨.
+```js
+// 숫자와 문자열 간의 덧셈과 곱셈 연산
+
+let a = 3;
+let b = 5;
+let c = "3";
+let d = "5";
+
+// 숫자와 숫자의 덧셈
+document.write(a + b + "<br />"); // 3 + 5 = 8
+
+// 문자열과 문자열의 덧셈 → 연결 연산자
+document.write(c + d + "<br />"); // "3" + "5" = "35"
+
+// 숫자와 문자열의 덧셈 → 어느 한 쪽이 문자열인 경우, 나머지 한 쪽이 문자열로 자동 변환
+document.write(a + d + "<br />"); // 3 + "5" = "35"
+
+// 문자열과 문자열의 곱셈 → 문자열이 숫자로 변환
+document.write(c * d); // 3 * 5 = 15
+```
+### 6.1.2 NaN 데이터 형  
+- `NaN`은 'Not a Number'의 약어이며, 숫자와 문자열 간에 사칙 연산(덧셈 제외)을 하면 서로 연산을 할 수 없기 때문에 `NaN`의 결과가 나오게 됨.
+```js
+// 숫자와 문자열 간의 나눗셈 연산
+
+let a = 10;
+let b = "lion";
+let c = "2";
+
+// 숫자와 문자열의 나눗셈
+document.write(a / b + "<br />"); // NaN
+document.write(isNaN(a / b) + "<br />"); // true
+
+// 문자열이 숫자로 변환
+document.write(a / c + "<br />"); // 10 / 2 = 5
+document.write(isNaN(a / c)); // false
+```
+### 6.1.3 진수 변환  
+- Number 객체의 `toString()` 메서드를 이용하면 숫자를 다른 진수로 변환할 수 있음.
+```js
+// 진수 변환 예
+
+let x = 91;
+
+document.write(x.toString(16) + "<br />"); // 5b (16진수로 변환)
+document.write(x.toString(10) + "<br />"); // 91 (10진수로 변환)
+document.write(x.toString(2)); // 1011011 (2진수로 변환)
+```
+### 6.1.4 무한대  
+- 자바스크립트에서는 무한대 수를 표현하기 위해 `Infinity`와 `-Infinity` 프로퍼티를 사용함.
+- 이는 각각 `양의 무한대`와 `음의 무한대`를 나타내며, 표현할 수 있는 수보다 더 큰 수를 계산해야 하는 경우 `Infinity`를 반환함.
+```js
+// 거듭 제곱 계속 연산으로 발생한 무한대
+
+let x = 10;
+
+while (x != Infinity) {
+	x = Math.pow(x, 2);
+	document.write(x + "<br />");
+}
+```
+
+---
+## 6.2 Number 메서드  
+### 6.2.1 toString() 메서드  
+- `toString()` 메서드는 진수를 변환할 때 사용되지만, 매개변수를 사용하지 않고 그대로 사용하면 숫자를 문자열로 변환할 수 있음.
+```js
+// toString() 메서드로 숫자를 문자열로 변환
+
+let x = 10;
+
+document.write(x + "<br />"); // 10
+document.write(x.toString() + "<br />"); // "10"
+document.write(typeof x + "<br />"); // number
+document.write(typeof x.toString()); // string
+```
+### 6.2.2 toFixed() 메서드  
+- `toFixed()` 메서드는 소수점 자릿수를 구하는 데 사용됨.
+- 예를 들어 `toFixed(2)`는 소수점 둘째 자리까지 구하며, 셋째 자리에서 반올림이 일어남.
+```js
+// toFixed() 메서드로 부동 소수점 자릿수 구하기
+
+let x = 20.3648;
+
+document.write(x.toFixed(0) + "<br />"); // 20, 정수 부분을 구하기
+document.write(x.toFixed(1) + "<br />"); // 20.4, 첫째 자리까지 구하기
+document.write(x.toFixed(2) + "<br />"); // 20.36, 둘째 자리까지 구하기
+document.write(x.toFixed(3)); // 20.365, 셋째 자리까지 구하기
+```
+### 6.2.3 toPrecision() 메서드  
+- `toPrecision()` 메서드는 `toFixed()` 메서드와 마찬가지로 부동 소수점 자릿수를 구하는 데 사용됨.
+- `toPrecision()` 메서드는 표시되는 전체 숫자의 개수를 이용하여 자릿수를 구함.
+```js
+// toPrecision() 메서드로 부동 소수점 자릿수 구하기
+
+let x = 123.348765;
+
+document.write(x.toPrecision() + "<br />"); // 123.348765
+document.write(x.toPrecision(3) + "<br />"); // 123
+document.write(x.toPrecision(4) + "<br />"); // 123.3
+document.write(x.toPrecision(5) + "<br />"); // 123.35
+document.write(x.toPrecision(6)); // 123.349
+```
+### 6.2.4 toExponential() 메서드  
+- `toExponential()` 메서드는 지수 표기로 반올림된 문자열을 반환함.
+- 매개변수는 표현되는 소수점 자릿수를 의미하며, 소수점 이하 숫자를 몇 자리까지 표시할 지 설정할 수 있음.
+```js
+// toExponential() 메서드 사용 예
+
+let x = 1235.36764508;
+
+document.write(x.toExponential() + "<br />"); // 1.23536764508e+3
+document.write(x.toExponential(2) + "<br />"); // 1.24e+3
+document.write(x.toExponential(3) + "<br />"); // 1.235e+3
+document.write(x.toExponential(6)); // 1.235368e+3
+```
+
+---
+## 6.3 변수의 숫자 변환  
+### 6.3.1 Number() 메서드  
+- `Number()` 메서드는 변수 또는 데이터 값을 숫자로 변환함.
+```js
+// 전역 메서드 Number()로 숫자 변환하기
+
+let a = "10";
+let b = "10.123";
+let c = "   10";
+let d = "apple";
+
+document.write(Number(a) + "<br />"); // 10
+document.write(Number(b) + "<br />"); // 10.123
+document.write(Number(c) + "<br />"); // 10
+document.write(Number(d)); // NaN
+```
+### 6.3.2 parseInt() 메서드  
+- `parseInt()` 메서드는 변수나 데이터를 정수로 변환하는 데 사용됨.
+```js
+// 전역 메서드 parseInt()로 정수 변환
+
+let a = "10";
+let b = "10.123";
+let c = "   10";
+let d = "apple";
+
+document.write(parseInt(a) + "<br />"); // 10
+document.write(parseInt(b) + "<br />"); // 10
+document.write(parseInt(c) + "<br />"); // 10
+document.write(parseInt(d)); // NaN
+```
+### 6.3.3 parseFloat() 메서드  
+- `parseFloat()` 메서드는 문자열을 부동 소수점 숫자로 변환하는 데 사용됨.
+```js
+// 전역 메서드 parseFloat()로 부동 소수점 숫자 변환
+
+let a = "10";
+let b = "10.123";
+let c = "   10";
+let d = "apple";
+
+document.write(parseFloat(a) + "<br />"); // 10
+document.write(parseFloat(b) + "<br />"); // 10.123
+document.write(parseFloat(c) + "<br />"); // 10
+document.write(parseFloat(d)); // NaN
+```
+
+---
+## 6.4 Number 프로퍼티  
+### 6.4.1 MAX_VALUE, MIN_VALUE 프로퍼티  
+- `MAX_VALUE`와 `MIN_VALUE` 프로퍼티는 자바스크립트로 표현 가능한 가장 큰 수와 작은 수를 나타냄.
+```js
+// MAX_VALUE와 MIN_VALUE 값 확인하기
+
+let x = Number.MAX_VALUE;
+let y = Number.MIN_VALUE;
+
+document.write(x + "<br />"); // 1.7976931348623157e+308
+document.write(y); // 5e-324
+```
+### 6.4.2 MAX_SAFE_INTEGER, MIN_SAFE_INTEGER 프로퍼티  
+- `MAX_SAFE_INTEGER`와 `MIN_SAFE_INTEGER` 프로퍼티는 안전하게 표현 가능한 최대 정수와 최소 정수를 의미함.
+- `MAX_SAFE_INTEGER`는 2<sup>53</sup> - 1 값을 가지며, `MIN_SAFE_INTEGER`는 -(2<sup>53</sup> - 1) 값을 가짐.
+```js
+// MAX_VALUE와 MIN_VALUE 값 확인하기
+
+let x = Number.MAX_SAFE_INTEGER;
+let y = Number.MIN_SAFE_INTEGER;
+
+document.write(x + "<br />"); // 9007199254740991
+document.write(y); // -9007199254740991
+```
+
+---
