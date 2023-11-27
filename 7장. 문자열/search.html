@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // search() 메서드 사용 예
+
+      let str1 = "No pain no gain. No pain no gain.";
+
+      document.write(str1.search("pain") + "<br />"); // 3 → pain이 처음 발생하는 위치
+      document.write(str1.search("No") + "<br />"); // 0 → No가 처음 발생하는 위치
+      document.write(str1.search("no") + "<br />"); // 8 → no가 처음 발생하는 위치
+      document.write(str1.search(/no/i) + "<br />"); // 0 → no(대소문자 구분 X)가 처음 발생하는 위치
+      document.write(str1.search("yes")); // -1 → 존재하지 않는 문자열이므로 -1을 반환
+    </script>
+  </body>
+</html>

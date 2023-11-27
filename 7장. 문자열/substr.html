@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // substr() 메서드로 문자열 추출하기
+
+      let str1 = "고래 싸움에 새우 등 터진다.";
+
+      document.write(str1.substr(5, 3) + "<br />"); // 에 새 → 인덱스 5부터 3개의 문자열 추출
+      document.write(str1.substr(7) + "<br />"); // 새우 등 터진다. → 인덱스 7부터 끝까지 추출
+      document.write(str1.substr(-3)); // 진다. → 끝에서 3개를 추출
+    </script>
+  </body>
+</html>
