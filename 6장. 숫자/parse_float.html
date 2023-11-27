@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 전역 메서드 parseFloat()로 부동 소수점 숫자 변환
+
+      let a = "10";
+      let b = "10.123";
+      let c = "   10";
+      let d = "apple";
+
+      document.write(parseFloat(a) + "<br />"); // 10
+      document.write(parseFloat(b) + "<br />"); // 10.123
+      document.write(parseFloat(c) + "<br />"); // 10
+      document.write(parseFloat(d)); // NaN
+    </script>
+  </body>
+</html>

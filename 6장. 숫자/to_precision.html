@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // toPrecision() 메서드로 부동 소수점 자릿수 구하기
+
+      let x = 123.348765;
+
+      document.write(x.toPrecision() + "<br />"); // 123.348765
+      document.write(x.toPrecision(3) + "<br />"); // 123
+      document.write(x.toPrecision(4) + "<br />"); // 123.3
+      document.write(x.toPrecision(5) + "<br />"); // 123.35
+      document.write(x.toPrecision(6)); // 123.349
+    </script>
+  </body>
+</html>

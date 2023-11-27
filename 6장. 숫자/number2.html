@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 숫자와 문자열 간의 덧셈과 곱셈 연산
+
+      let a = 3;
+      let b = 5;
+      let c = "3";
+      let d = "5";
+
+      // 숫자와 숫자의 덧셈
+      document.write(a + b + "<br />"); // 3 + 5 = 8
+
+      // 문자열과 문자열의 덧셈 → 연결 연산자
+      document.write(c + d + "<br />"); // "3" + "5" = "35"
+
+      // 숫자와 문자열의 덧셈 → 어느 한 쪽이 문자열인 경우, 나머지 한 쪽이 문자열로 자동 변환
+      document.write(a + d + "<br />"); // 3 + "5" = "35"
+
+      // 문자열과 문자열의 곱셈 → 문자열이 숫자로 변환
+      document.write(c * d); // 3 * 5 = 15
+    </script>
+  </body>
+</html>

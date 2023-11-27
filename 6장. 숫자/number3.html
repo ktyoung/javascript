@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 숫자와 문자열 간의 나눗셈 연산
+
+      let a = 10;
+      let b = "lion";
+      let c = "2";
+
+      // 숫자와 문자열의 나눗셈
+      document.write(a / b + "<br />"); // NaN
+      document.write(isNaN(a / b) + "<br />"); // true
+
+      // 문자열이 숫자로 변환
+      document.write(a / c + "<br />"); // 10 / 2 = 5
+      document.write(isNaN(a / c)); // false
+    </script>
+  </body>
+</html>
