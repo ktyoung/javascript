@@ -1580,3 +1580,257 @@ document.write(y); // -9007199254740991
 ```
 
 ---
+
+## 7장. 문자열
+## 7.1 문자열이란?  
+### 7.1.1 특정 문자에 접근하기  
+- 문자열에서 인덱스를 이용하여 문자를 읽을 수 있음.
+- 인덱스는 0부터 시작함.
+```js
+// 문자열에서 특정 문자 읽기
+
+let str1 = "안녕하세요";
+
+document.write(str1[0] + "<br />"); // 안
+document.write(str1[2] + "<br />"); // 하
+document.write(str1[4]); // 요
+```
+### 7.1.2 문자 반복 처리하기  
+- `For` 문을 이용하여 문자열의 각 문자를 반복해서 읽어올 수 있음.
+```js
+// 문자열의 각 문자 For 문으로 읽어오기
+
+let str1 = "안녕하세요";
+
+for (let i = 0; i < str1.length; i++) {
+	document.write(str1[i] + "<br />");
+}
+```
+
+---
+## 7.2 문자열 추출  
+### 7.2.1 slice() 메서드  
+- `slice()` 메서드는 문자 시작 위치와 끝 위치를 기준으로 문자열을 추출함.
+- `slice(start, end)` 인덱스 `start`부터 인덱스 `end - 1`까지의 문자열을 추출함.
+```js
+// slice() 메서드로 문자열 추출하기
+
+let str1 = "가는 말이 고와야 오는 말이 곱다.";
+
+document.write(str1.slice(3, 8) + "<br />"); // 말이 고와 → 인덱스 3부터 7까지 추출
+document.write(str1.slice(3) + "<br />"); // 말이 고와야 오는 말이 곱다. → 인덱스 3부터 끝까지 추출
+document.write(str1.slice(-5)); // 이 곱다. → 끝에서 5개를 추출
+```
+### 7.2.2 substr() 메서드  
+- `substr()` 메서드는 시작 위치와 추출하는 개수를 지정함.
+- `substr(start, length)` 인덱스 `start`부터 `length` 개수의 문자열을 추출함.
+```js
+// substr() 메서드로 문자열 추출하기
+
+let str1 = "고래 싸움에 새우 등 터진다.";
+
+document.write(str1.substr(5, 3) + "<br />"); // 에 새 → 인덱스 5부터 3개의 문자열 추출
+document.write(str1.substr(7) + "<br />"); // 새우 등 터진다. → 인덱스 7부터 끝까지 추출
+document.write(str1.substr(-3)); // 진다. → 끝에서 3개를 추출
+```
+
+---
+## 7.3 문자열 변환  
+### 7.3.1 toUpperCase() 메서드  
+- `toUpperCase()` 메서드는 영문 소문자를 대문자로 변경한 문자열을 반환함.
+```js
+// toUpperCase() 메서드로 영문 대문자 변경하기
+
+let str1 = "Javascript";
+
+document.write(str1.toUpperCase()); // JAVASCRIPT
+document.write(str1); // Javascript → 기존 값은 변경되지 않음
+```
+### 7.3.2 toLowerCase() 메서드  
+- `toLowerCase()` 메서드는 영문 대문자를 소문자로 변경한 문자열을 반환함.
+```js
+// toLowerCase() 메서드로 영문 소문자 변경하기
+
+let str1 = "I Am A Student.";
+
+document.write(str1.toLowerCase()); // i am a student.
+document.write(str1); // I Am A Student. → 기존 값은 변경되지 않음
+```
+### 7.3.3 replace() 메서드  
+- `replace()` 메서드는 문자열에서 특정 문자열을 찾아 다른 문자열로 치환함.
+- 첫 번째로 매치되는 문자열만 변경되고, 그 다음 매치되는 문자열은 변경되지 않음.
+```js
+// replace() 메서드로 문자열 치환하기
+
+let str1 = "My friend or a friend of mine?";
+
+document.write(str1.replace("friend", "student")); // My student or a friend of mine? → 첫 번째 문자열만 변경됨
+document.write(str1); // My friend or a friend of mine? → 기존 값은 변경되지 않음
+```
+### 7.3.4 replaceAll() 메서드  
+- `replaceAll()` 메서드는 문자열에서 특정 문자열을 찾아 매치된 모든 문자열을 다른 문자열로 치환함.
+```js
+// replaceAll() 메서드로 문자열 치환하기
+
+let str1 = "Apple apple apple apple";
+
+document.write(str1.replaceAll("apple", "orange")); // Apple orange orange orange
+document.write(str1); // Apple apple apple apple → 기존 값은 변경되지 않음
+```
+### 7.3.5 concat() 메서드  
+- `concat()` 메서드는 두 개 이상의 문자열을 서로 병합하는 데 사용됨.
+- 기존의 문자열을 변경하지 않고 문자열들을 연결한 새로운 문자열을 반환함.
+```js
+// concat() 메서드로 문자열 연결하기
+
+let str1 = "토끼";
+let str2 = "거북이";
+
+document.write(str1.concat(str2) + "<br />"); // 토끼거북이
+document.write(str1.concat("와 " + str2) + "<br />"); // 토끼와 거북이
+document.write(str1); // 토끼 → 기존 값은 변경되지 않음
+```
+### 7.3.6 split() 메서드  
+- `split()` 메서드는 특정 문자열을 기준으로 문자열을 분리하여 배열 형태로 반환함.
+```js
+// split() 메서드로 휴대폰 번호 분리하기
+
+let phone = "010-1234-5678";
+
+document.write(phone.split("-")); // 010,1234,5678
+```
+
+```js
+// split() 메서드로 호출 후 For 문 이용하기
+
+let str1 = "We are the world";
+let arr = str1.split(" ");
+
+for (let i = 0; i < arr.length; i++) {
+	document.write(arr[i] + "<br />");
+}
+```
+
+---
+## 7.4 공백 삭제와 문자열 패딩  
+### 7.4.1 trim() 메서드  
+- `trim()` 메서드는 문자열 양 끝에 있는 공백을 삭제하는 데 사용됨.
+```js
+// trim() 메서드로 문자열 양쪽 끝 공백 삭제하기
+
+let str1 = "     javascript string       ";
+
+document.write(str1.trim() + "<br />"); // javascript string
+document.write(str1.length + "<br />"); // 29
+document.write(str1.trim().length); // 17
+```
+### 7.4.2 trimStart() 메서드  
+- `trimStart()` 메서드는 문자열 앞쪽에 있는 공백만 삭제함.
+```js
+// trimStart() 메서드로 문자열 앞 공백 삭제하기
+
+let str1 = "     javascript string       ";
+
+document.write(str1.trimStart() + "<br />"); // javascript string
+document.write(str1.length + "<br />"); // 29
+document.write(str1.trimStart().length); // 24
+```
+### 7.4.3 trimEnd() 메서드  
+- `trimEnd()` 메서드는 문자열 뒤쪽에 있는 공백만 삭제함.
+```js
+// trimEnd() 메서드로 문자열 뒤 공백 삭제하기
+
+let str1 = "     javascript string       ";
+
+document.write(str1.trimEnd() + "<br />"); // javascript string
+document.write(str1.length + "<br />"); // 29
+document.write(str1.trimEnd().length); // 22
+```
+### 7.4.4 padStart() 메서드  
+- `padStart()` 메서드는 문자열 앞 쪽에 특정 문자열을 채우는 데 사용됨.
+- `padStart(targetLength, padString)` 전체 자릿수가 `targetLength`가 되도록 문자열 앞에 `padString`을 채움.
+```js
+// padStart() 메서드로 앞 쪽 문자열 채우기
+
+let str1 = "268";
+
+document.write(str1 + "<br />"); // 268
+document.write(str1.padStart(5, "0") + "<br />"); // 00268
+document.write(str1.padStart(6, "#")); // ###268
+```
+### 7.4.5 padEnd() 메서드  
+- `padEnd()` 메서드는 문자열 앞 쪽에 특정 문자열을 채우는 데 사용됨.
+- `padEnd(targetLength, padString)` 전체 자릿수가 `targetLength`가 되도록 문자열 뒤에 `padString`을 채움.
+```js
+// padEnd() 메서드로 뒤에 문자열 채우기
+
+let str1 = "35";
+
+document.write(str1 + "<br />"); // 35
+document.write(str1.padEnd(5, "0") + "<br />"); // 35000
+document.write(str1.padEnd(6, "x")); // 35xxxx
+```
+
+---
+## 7.5 문자열 검색  
+### 7.5.1 indexOf() 메서드  
+- `indexOf()` 메서드는 문자열에서 특정 문자열이 처음 발생하는 위치를 반환하고, 특정 문자열이 존재하지 않으면 -1을 반환함.
+- `indexOf(searchString, position)` 검색을 시작하는 위치 `position`부터 검색을 시작하여 `searchString`이 처음 발생하는 위치를 반환함.
+
+```js
+// indexOf() 메서드 사용 예
+
+let str1 = "하늘의 별 따기. 하늘이 무너져도 솟아날 구멍이 있다.";
+
+document.write(str1.indexOf("하늘") + "<br />"); // 0
+document.write(str1.indexOf("하늘", 4) + "<br />"); // 10
+document.write(str1.indexOf("땅")); // -1
+```
+### 7.5.2 lastIndexOf() 메서드  
+- `lastIndexOf()` 메서드는 문자열에서 특정 문자열이 마지막으로 발생하는 위치를 반환하고, 특정 문자열이 존재하지 않으면 -1을 반환함.
+```js
+// lastIndexOf() 메서드 사용 예
+
+let str1 = "공든 탑이 무너지랴. 공자 앞에서 문자 쓴다.";
+
+document.write(str1.lastIndexOf("공") + "<br />"); // 12
+document.write(str1.lastIndexOf("공", 0) + "<br />"); // 0
+document.write(str1.indexOf("곰")); // -1
+```
+### 7.5.3 search() 메서드  
+- `search()` 메서드는 `indexOf()` 메서드와 같이 특정 문자열이 처음 발생하는 위치를 반환함.
+- `search()` 메서드는 문자열 검색 뿐만 아니라, 정규 표현식도 검색에 이용 가능함.
+```js
+// search() 메서드 사용 예
+
+let str1 = "No pain no gain. No pain no gain.";
+
+document.write(str1.search("pain") + "<br />"); // 3 → pain이 처음 발생하는 위치
+document.write(str1.search("No") + "<br />"); // 0 → No가 처음 발생하는 위치
+document.write(str1.search("no") + "<br />"); // 8 → no가 처음 발생하는 위치
+document.write(str1.search(/no/i) + "<br />"); // 0 → no(대소문자 구분 X)가 처음 발생하는 위치
+document.write(str1.search("yes")); // -1 → 존재하지 않는 문자열이므로 -1을 반환
+```
+### 7.5.4 match() 메서드  
+- `match()` 메서드는 문자열 내에 정규 표현식으로 표현된 특정 문자열이 존재하는지 검사하여 그 결과를 배열 형태로 반환함.
+```js
+// match() 메서드 사용 예
+
+let str1 = "I am A student. I am from Korea.";
+
+// gi 옵션은 대소문자를 구분하지 않는 모든 매치를 의미함
+document.write(str1.match(/a/gi)); // a,A,a,a
+```
+### 7.5.5 includes() 메서드  
+- `includes()` 메서드는 문자열 내에 특정 문자열이 존재하는지 검색하여 그 문자열이 존재하면 `true`, 그렇지 않으면 `false`를 반환함.
+```js
+ // includes() 메서드 사용 예
+
+let str1 = "강물도 오래 흐르면 바위에 구멍을 뚫는다.";
+
+document.write(str1.includes("바위") + "<br />"); // true
+document.write(str1.includes("사과")); // false
+```
+
+---
+
