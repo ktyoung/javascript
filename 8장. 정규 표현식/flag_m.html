@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 플래그 m의 사용 예
+
+      let str1 = `I go to a School. My 
+school is a good 
+SCHOOL`;
+      let pattern1 = /^school/;
+      let pattern2 = /^school/m;
+
+      document.write(str1.replace(pattern1, "OFFICE") + "<br />");
+      document.write(str1.replace(pattern2, "OFFICE"));
+      // I go to a School. My OFFICE is a good SCHOOL
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 메타문자 . 사용 예
+
+      let str1 = "A cat gets haircut. c3t c_t.";
+      let pattern = /c.t/g;
+
+      document.write(str1.match(pattern)); // cat,cut,c3t,c_t
+    </script>
+  </body>
+</html>

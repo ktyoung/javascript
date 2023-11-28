@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 그룹 패턴 [^abc] 사용 예
+
+      let str1 = "I love Ice Cream. Do you like it?";
+      let pattern1 = /[^ae]/g; // a와 e를 제외한 어떤 문자와도 매치
+      let pattern2 = /[^o-z]/g; // 소문자 o부터 z 사이의 문자를 제외한 문자와 매치
+      let pattern3 = /[^A-C]/g; // 대문자 A부터 C 사이의 문자를 제외한 문자와 매치
+
+      document.write(str1.match(pattern1) + "<br />"); // I, ,l,o,v, ,I,c, ,C,r,m,., ,D,o, ,y,o,u, ,l,i,k, ,i,t,?
+      document.write(str1.match(pattern2) + "<br />"); // I, ,l,e, ,I,c,e, ,C,e,a,m,., ,D, , ,l,i,k,e, ,i,?
+      document.write(str1.match(pattern3)); // I, ,l,o,v,e, ,I,c,e, ,r,e,a,m,., ,D,o, ,y,o,u, ,l,i,k,e, ,i,t,?
+    </script>
+  </body>
+</html>

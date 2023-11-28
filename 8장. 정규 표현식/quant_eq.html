@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 수량자 ?= 사용 예
+
+      let str1 = "his cat her cat your cat";
+      let pattern = /cat(?= your)/g; // 'cat' 다음에 'your'가 오는 경우의 'cat' 검색
+
+      document.write(str1.replace(pattern, "CAT")); // his cat her CAT your cat
+    </script>
+  </body>
+</html>

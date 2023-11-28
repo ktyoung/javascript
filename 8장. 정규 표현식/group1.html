@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 그룹 패턴 [abc] 사용 예
+
+      let str1 = "I love Ice Cream. Do you like it?";
+      let pattern1 = /[ae]/g; // a 또는 e 중 어떤 것이 와도 매치
+      let pattern2 = /[o-z]/g; // 소문자 o부터 z 사이의 문자들인 경우에 매치
+      let pattern3 = /[A-C]/g; // 대문자 A부터 C 사이의 문자들인 경우에 매치
+
+      document.write(str1.match(pattern1) + "<br />"); // e,e,e,a,e
+      document.write(str1.match(pattern2) + "<br />"); // o,v,r,o,y,o,u,t
+      document.write(str1.match(pattern3)); // C
+    </script>
+  </body>
+</html>

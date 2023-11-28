@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 메타문자 \w와 수량자 + 사용 예
+
+      let str1 = "Email : hong@korea.com";
+      let pattern = /\w+/g; // 영문자(또는 숫자, 밑줄)가 1번 이상 반복되는 문자열
+
+      document.write(str1.match(pattern)); // Email,hong,korea,com
+    </script>
+  </body>
+</html>

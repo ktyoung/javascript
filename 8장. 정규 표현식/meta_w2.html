@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 메타문자 \W 사용 예
+
+      let str1 = "Discount rate : 30%!";
+      let pattern = /\W/g;
+
+      document.write(str1.match(pattern)); // , ,:, ,%,!
+    </script>
+  </body>
+</html>
