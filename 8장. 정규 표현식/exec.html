@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // exec() 메서드 사용 예
+
+      let str1 = "We are the world.";
+      let pattern = /are/g;
+
+      document.write(pattern.exec(str1) + "<br />"); // are
+      document.write(/is/g.exec(str1)); // null
+    </script>
+  </body>
+</html>

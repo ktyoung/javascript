@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 그룹 패턴 (x|y) 사용 예
+
+      let str1 = "I am a boy. You are a girl. She is pretty.";
+      let pattern = /(am|are|is)/g; // 'am', 'are', 'is' 중 어떤 것과도 매치
+
+      document.write(str1.match(pattern)); // am,are,is
+    </script>
+  </body>
+</html>

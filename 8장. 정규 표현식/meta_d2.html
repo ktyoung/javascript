@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 메타문자 \D 사용 예
+
+      let str1 = "Phone number : 010-1234-5678.";
+      let pattern = /\D/g;
+
+      document.write(str1.match(pattern)); // P,h,o,n,e, ,n,u,m,b,e,r, ,:, ,-,-,.
+    </script>
+  </body>
+</html>

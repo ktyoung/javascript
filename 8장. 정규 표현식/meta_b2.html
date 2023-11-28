@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 메타문자 \B 사용 예
+
+      let str1 = "You are a student. Your restaurant is nice.";
+      let pattern1 = /\Bou/g; // 'ou'가 단어의 시작이 아닐 때 매치
+      let pattern2 = /e\B/g; // 'e'가 단어의 끝이 아닐 때 매치
+
+      document.write(str1.replace(pattern1, "_") + "<br />"); // Y_ are a student. Y_r restaurant is nice.
+      document.write(str1.replace(pattern2, "_")); // You are a stud_nt. Your r_staurant is nice.
+    </script>
+  </body>
+</html>
