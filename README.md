@@ -1834,3 +1834,365 @@ document.write(str1.includes("사과")); // false
 
 ---
 
+## 8장. 정규 표현식
+## 8.1 정규 표현식이란?  
+- `정규 표현식(Regular Expression)`은 문자열에서 특정 문자열을 검색하거나 치환할 때 사용함.
+### 8.1.1 정규 표현식의 형식  
+- `/검색패턴/플래그:` 형식으로 사용함.
+```js
+// 간단한 정규 표현식 사용 예
+
+let str1 = "I go to a School. My school is a good SCHOOL";
+let pattern = /school/;
+
+document.write(str1.replace(pattern, "office")); // I go to a School. My office is a good SCHOOL
+```
+### 8.1.2 정규 표현식의 플래그  
+- `i(ignore case)` 플래그는 영문 대소문자를 구분하지 않고 검색함.
+```js
+// 플래그 i의 사용 예
+
+let str1 = "I go to a School. My school is a good SCHOOL";
+let pattern = /school/i;
+
+document.write(str1.replace(pattern, "office"));
+// I go to a office. My school is a good SCHOOL
+```
+- `g(global)` 플래그는 문자열 내의 모든 패턴에 대해 검색함.
+```js
+// 플래그 g의 사용 예
+
+let str1 = "I go to a School. My school is a good SCHOOL";
+let pattern = /school/gi;
+
+document.write(str1.replace(pattern, "office"));
+// I go to a office. My office is a good office
+```
+- `m(multi line)` 플래그는 문자열의 행이 바뀌어도 계속 검색함.
+```js
+// 플래그 m의 사용 예
+
+let str1 = `I go to a School. My
+school is a good
+SCHOOL`;
+
+let pattern1 = /^school/;
+let pattern2 = /^school/m;
+
+document.write(str1.replace(pattern1, "OFFICE") + "<br />");
+document.write(str1.replace(pattern2, "OFFICE"));
+// I go to a School. My OFFICE is a good SCHOOL
+```
+
+---
+## 8.2 메타문자  
+### 8.2.1 메타문자 :  \\.
+- `.` 메타문자는 임의의 한 문자(줄바꿈 문자 제외)와 매치됨
+```js
+// 메타문자 . 사용 예
+
+let str1 = "A cat gets haircut. c3t c_t.";
+let pattern = /c.t/g;
+
+document.write(str1.match(pattern)); // cat,cut,c3t,c_t
+```
+### 8.2.2 메타문자 : \\w
+- `\w` 메타문자에서 `w`는 'word'를 의미하며, `\w`는 영문자(숫자, 밑줄 포함)와 매치됨.
+```js
+// 메타문자 \w 사용 예
+
+let str1 = "Discount rate : 30%!";
+let pattern = /\w/g;
+
+document.write(str1.match(pattern)); // D,i,s,c,o,u,n,t,r,a,t,e,3,0
+```
+### 8.2.3 메타문자 : \\W  
+- `\W` 메타문자는 영문자, 숫자, 밑줄을 제외한 문자와 매치됨. (`\w`와 반대되는 매치)
+```js
+// 메타문자 \W 사용 예
+
+let str1 = "Discount rate : 30%!";
+let pattern = /\W/g;
+
+document.write(str1.match(pattern)); // , ,:, ,%,!
+```
+### 8.2.4 메타문자 : \\d  
+- `\d` 메타문자에서 `d`는 'digit'를 의미하며, `\d`는 0~9 숫자와 매치됨.
+```js
+// 메타문자 \d 사용 예
+
+let str1 = "Phone number : 010-1234-5678.";
+let pattern = /\d/g;
+
+document.write(str1.match(pattern)); // 0,1,0,1,2,3,4,5,6,7,8
+```
+### 8.2.5 메타문자 : \\D  
+- `\D` 메타문자는 숫자를 제외한 문자와 매치됨. (`\d`와 반대되는 매치)
+```js
+// 메타문자 \D 사용 예
+
+let str1 = "Phone number : 010-1234-5678.";
+let pattern = /\D/g;
+
+document.write(str1.match(pattern)); // P,h,o,n,e, ,n,u,m,b,e,r, ,:, ,-,-,.
+```
+### 8.2.6 메타문자 : \\s  
+- `\s` 메타문자에서 `s`는 'space'를 의미하며, `\s`는 공백, 탭, 줄바꿈 문자, 즉 화이트 스페이스와 매치됨.
+```js
+// 메타문자 \s 사용 예
+
+let str1 = "How are you!";
+let pattern = /\s/g;
+
+document.write(str1.replace(pattern, "_")); // How_are_you!
+```
+### 8.2.7 메타문자 : \\S  
+- `\S` 메타문자는 화이트 스페이스를 제외한 문자와 매치됨. (`\s`와 반대되는 매치)
+```js
+// 메타문자 \S 사용 예
+
+let str1 = "How are you!";
+let pattern = /\S/g;
+
+document.write(str1.replace(pattern, "#")); // ### ### ####
+```
+### 8.2.8 메타문자 : \\b  
+- `\b` 메타문자에서 `b`는 'begin'을 의미하며, `\b`는 특정 문자열로 시작하는 단어 또는 특정 문자열로 끝나는 단어를 검색하는 데 사용됨.
+```js
+// 메타문자 \b 사용 예
+
+let str1 = "You are a student. Your restaurant is nice.";
+let pattern1 = /\bYou/g; // 'You'가 단어의 시작으로 올 때 매치됨
+let pattern2 = /e\b/g; // 'e'가 단어의 끝이 될 때 매치
+
+document.write(str1.replace(pattern1, "_") + "<br />"); // _ are a student. _r restaurant is nice.
+document.write(str1.replace(pattern2, "_")); // You ar_ a student. Your restaurant is nic_.
+```
+### 8.2.9 메타문자 : \\B  
+- `\B` 메타문자는 특정 문자열로 시작하지 않는 단어나 특정 문자열로 끝나지 않는 단어를 검색하는 데 사용됨. (`\b`와 반대되는 매치)
+```js
+// 메타문자 \B 사용 예
+
+let str1 = "You are a student. Your restaurant is nice.";
+let pattern1 = /\Bou/g; // 'ou'가 단어의 시작이 아닐 때 매치
+let pattern2 = /e\B/g; // 'e'가 단어의 끝이 아닐 때 매치
+
+document.write(str1.replace(pattern1, "_") + "<br />"); // Y_ are a student. Y_r restaurant is nice.
+document.write(str1.replace(pattern2, "_")); // You are a stud_nt. Your r_staurant is nice.
+```
+
+---
+## 8.3 수량자  
+### 8.3.1 수량자 : +  
+- `+` 수량자는 바로 앞의 문자가 최소한 1번 이상 반복될 경우 매치됨.
+```js
+// 수량자 + 사용 예
+
+let str1 = "Woops! Wooops! Woooops!";
+let pattern = /o+/g; // 'o'가 1번 이상 반복되는 문자열
+
+document.write(str1.match(pattern)); // oo,ooo,oooo
+```
+
+```js
+// 메타문자 \w와 수량자 + 사용 예
+
+let str1 = "Email : hong@korea.com";
+let pattern = /\w+/g; // 영문자(또는 숫자, 밑줄)가 1번 이상 반복되는 문자열
+
+document.write(str1.match(pattern)); // Email,hong,korea,com
+```
+### 8.3.2 수량자 : *  
+- `*` 수량자는 바로 앞의 문자가 0번 또는 1번 이상 반복될 경우 매치됨.
+- 예를 들어 `/ab*/`는 `a`, `ab`, `abb`, `abbb` 등의 문자열을 나타냄.
+```js
+// 수량자 * 사용 예
+
+let str1 = "Ah okay! aahh! ahhhh!";
+let pattern = /ah*/g; // 'h'가 0번 또는 1번 이상 반복되는 문자열
+
+document.write(str1.match(pattern)); // a,a,ahh,ahhhh
+```
+### 8.3.3 수량자 : ?  
+- `?` 수량자는 바로 앞의 문자가 0번 또는 1번 반복될 경우 매치됨.
+- 예를 들어 `/ab?/`는 `a`, `ab`의 문자열을 나타냄.
+```js
+// 수량자 ? 사용 예
+
+let str1 = "Ah okay! aahh! ahhhh!";
+let pattern = /ah?/g; // 'h'가 0번 또는 1번 반복되는 문자열
+
+document.write(str1.match(pattern)); // a,a,ah,ah
+```
+### 8.3.4 수량자 : {m}  
+- `{m}` 수량자는 앞의 문자가 `m`번 반복되는 패턴과 매치됨.
+- 예를 들어 `a{4}`는 `aaaa`와 매치됨.
+```js
+// 수량자 {m} 사용 예
+
+let str1 = "1 12 123 1234 12345 123456";
+let pattern = /\d{3}/g; // 0~9 숫자가 3번 반복되는 패턴, 즉 3자리 숫자와 매치
+
+document.write(str1.match(pattern)); // 123,123,123,123,456
+```
+### 8.3.5 수량자 : {m,}  
+- `{m,}` 수량자는 앞의 문자가 `m`번 이상 반복되는 패턴과 매치됨.
+- 예를 들어 `a{4,}`는 `aaaa`, `aaaaa`, `aaaaaa`, `...`와 매치됨.
+```js
+// 수량자 {m,} 사용 예
+
+let str1 = "1 12 123 1234 12345 123456";
+let pattern = /\d{5,}/g; // 0~9 숫자가 5번 이상 반복되는 패턴, 즉 5자리 이상의 숫자와 매치
+
+document.write(str1.match(pattern)); // 12345,123456
+```
+### 8.3.6 수량자 : {m,n}  
+- `{m,n}` 수량자는 앞의 문자가 `m`번 이상, `n`번 이하 반복되는 패턴과 매치됨.
+- 예를 들어 `a{4,6}`는 `aaaa`, `aaaaa`, `aaaaaa`와 매치됨.
+```js
+// 수량자 {m,n} 사용 예
+
+let str1 = "1 12 123 1234 12345 123456";
+let pattern = /\d{4,5}/g; // 0~9 숫자가 4번 이상, 5번 이하 반복되는 패턴, 즉 4자리와 5자리 숫자와 매치
+
+document.write(str1.match(pattern)); // 1234,12345,12345
+```
+### 8.3.7 수량자 : ^  
+- `^` 수량자는 검색하는 문자열이 가장 앞에 위치해야 할 때 사용됨.
+- 예를 들어 `/^You/`는 `You`가 가장 앞에 오는 경우의 `You`를 검색함.
+```js
+// 수량자 ^ 사용 예
+
+let str1 = "this that his";
+let pattern = /^th/g; // 문자열의 가장 처음에 오는 경우의 'th'를 검색
+
+document.write(str1.replace(pattern, "TH")); // THis that his
+```
+### 8.3.8 수량자 : $  
+- `$` 수량자는 검색하는 문자열이 가장 뒤에 위치해야 할 때 사용됨.
+- 예를 들어 `/school$/`는 `school`이 제일 뒤에 오는 경우의 `school`을 검색함.
+```js
+// 수량자 $ 사용 예
+
+let str1 = "this that his";
+let pattern = /is$/g; // 문자열의 가장 끝에 오는 경우의 'is'를 검색
+
+document.write(str1.replace(pattern, "IS")); // this that hIS
+```
+### 8.3.9 수량자 : ?=  
+- `?=` 수량자는 문자 다음에 특정 문자가 나올 경우에만 검색됨.
+- 예를 들어 `/You(?= are)/`는 `You` 다음에 `are`가 오는 경우의 `You`를 검색함.
+```js
+// 수량자 ?= 사용 예
+
+let str1 = "his cat her cat your cat";
+let pattern = /cat(?= your)/g; // 'cat' 다음에 'your'가 오는 경우의 'cat' 검색
+
+document.write(str1.replace(pattern, "CAT")); // his cat her CAT your cat
+```
+### 8.3.10 수량자 : ?!  
+- `?!` 수량자는 문자 다음에 특정 문자가 나오지 않는 경우에만 검색됨.  (`?=`와 반대되는 검색)
+- 예를 들어 `/You(?! are)/`는 `You` 다음에 `are`가 오지 않는 경우의 `You`를 검색함.
+```js
+// 수량자 ?! 사용 예
+
+let str1 = "his cat her cat your cat";
+let pattern = /cat(?! your)/g; // 'cat' 다음에 'your'가 오지 않는 경우의 'cat' 검색
+
+document.write(str1.replace(pattern, "CAT")); // his CAT her cat your CAT
+```
+
+---
+## 8.4 그룹 패턴  
+### 8.4.1 패턴 : \[abc]  
+- `[abc]` 그룹 패턴은 대괄호에 포함된 `a`, `b`, `c` 중 하나라도 포함되면 매치됨.
+- 예를 들어 `[a-e]`는 `a~e` 중 어느 것이 와도 매치됨을 의미함.
+```js
+// 그룹 패턴 [abc] 사용 예
+
+let str1 = "I love Ice Cream. Do you like it?";
+let pattern1 = /[ae]/g; // a 또는 e 중 어떤 것이 와도 매치
+let pattern2 = /[o-z]/g; // 소문자 o부터 z 사이의 문자들인 경우에 매치
+let pattern3 = /[A-C]/g; // 대문자 A부터 C 사이의 문자들인 경우에 매치
+
+document.write(str1.match(pattern1) + "<br />"); // e,e,e,a,e
+document.write(str1.match(pattern2) + "<br />"); // o,v,r,o,y,o,u,t
+document.write(str1.match(pattern3)); // C
+```
+### 8.4.2 패턴 : \[^abc]  
+- `[^abc]` 그룹 패턴은 대괄호에 포함된 `a`, `b`, `c`를 제외한 문자들과 매치됨. (`[abc]`와 반대되는 매치)
+```js
+// 그룹 패턴 [^abc] 사용 예
+
+let str1 = "I love Ice Cream. Do you like it?";
+let pattern1 = /[^ae]/g; // a와 e를 제외한 어떤 문자와도 매치
+let pattern2 = /[^o-z]/g; // 소문자 o부터 z 사이의 문자를 제외한 문자와 매치
+let pattern3 = /[^A-C]/g; // 대문자 A부터 C 사이의 문자를 제외한 문자와 매치
+
+document.write(str1.match(pattern1) + "<br />"); // I, ,l,o,v, ,I,c, ,C,r,m,., ,D,o, ,y,o,u, ,l,i,k, ,i,t,?
+document.write(str1.match(pattern2) + "<br />"); // I, ,l,e, ,I,c,e, ,C,e,a,m,., ,D, , ,l,i,k,e, ,i,?
+document.write(str1.match(pattern3)); // I, ,l,o,v,e, ,I,c,e, ,r,e,a,m,., ,D,o, ,y,o,u, ,l,i,k,e, ,i,t,?
+```
+### 8.4.3 패턴 : \[0-9]  
+- `[0-9]` 그룹 패턴은 0에서 9까지의 숫자와 매치됨.
+```js
+// 그룹 패턴 [0-9] 사용 예
+
+let str1 = "1 23 456 789 10 11";
+let pattern1 = /[15]/g; // 숫자 1 또는 5와 매치
+let pattern2 = /[6-9]/g; // 숫자 6에서 9 사이 숫자와 매치
+
+document.write(str1.match(pattern1) + "<br />"); // 1,5,1,1,1
+document.write(str1.match(pattern2)); // 6,7,8,9
+```
+### 8.4.4 패턴 : \[^0-9]  
+- `[^0-9]` 그룹 패턴은 0에서 9까지의 숫자를 제외한 문자와 매치됨. (`[0-9]`와 반대되는 매치)
+```js
+// 그룹 패턴 [^0-9] 사용 예
+
+let str1 = "1 23 456 789 10 11";
+let pattern1 = /[^13579]/g; // 숫자 1, 3, 5, 7, 9를 제외한 모든 문자와 매치(공백 포함)
+let pattern2 = /[^0-6]/g; // 숫자 0에서 6 사이 숫자를 제외한 모든 문자와 매치
+
+document.write(str1.match(pattern1) + "<br />"); // ,2, ,4,6, ,8, ,0,
+document.write(str1.match(pattern2)); // , , ,7,8,9, ,
+```
+### 8.4.5 패턴 : \(x|y)  
+- `(x|y)` 그룹 패턴은 `x` 또는 `y`와 매치됨.
+```js
+// 그룹 패턴 (x|y) 사용 예
+
+let str1 = "I am a boy. You are a girl. She is pretty.";
+let pattern = /(am|are|is)/g; // 'am', 'are', 'is' 중 어떤 것과도 매치
+
+document.write(str1.match(pattern)); // am,are,is
+```
+
+---
+## 8.5 정규 표현식 메서드  
+### 8.5.1 exec() 메서드  
+- `exec()` 메서드는 문자열 내에서 특정 문자열을 검색하여 매치 결과를 배열로 반환하며, 매치가 없으면 `Null`을 반환함.
+- 매치되는 문자열을 얻는 데 사용함.
+```js
+// exec() 메서드 사용 예
+
+let str1 = "We are the world.";
+let pattern = /are/g;
+
+document.write(pattern.exec(str1) + "<br />"); // are
+document.write(/is/g.exec(str1)); // null
+```
+### 8.5.2 test() 메서드  
+- `test()` 메서드는 문자열 내에서 특정 문자열을 검색하여 매치가 있으면 `true`를 반환하고, 그렇지 않으면 `false`를 반환함.
+- 매치되는 문자열의 존재 여부를 판단하는 데 사용함.
+```js
+// test() 메서드 사용 예
+
+let str1 = "Nice to meet you!";
+let pattern = /[a-f]/g;
+
+document.write(pattern.test(str1) + "<br />"); // true
+document.write(/[0-9]/g.test(str1)); // false
+```
+
+---
