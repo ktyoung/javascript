@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 2차원 배열에 값 입력
+
+      // 4행 3열의 빈 요소로 구성된 2차원 배열 arr 생성
+      const arr = new Array(4);
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(3);
+      }
+
+      // 배열 arr에 1부터 12까지의 숫자 입력
+      let num = 1;
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+          arr[i][j] = num;
+          num++;
+        }
+      }
+
+      // 배열 arr의 각 요소 읽어오기
+      let text = "";
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+          text += arr[i][j] + " ";
+        }
+        text += "<br />";
+      }
+
+      document.write(text);
+      // 1 2 3
+      // 4 5 6
+      // 7 8 9
+      // 10 11 12
+    </script>
+  </body>
+</html>

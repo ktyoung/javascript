@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // indexOf() 메서드 사용 예
+
+      const fruits = ["사과", "오렌지", "수박", "감", "수박", "딸기", "키위"];
+
+      document.write(fruits.indexOf("수박") + "<br />"); // 2
+      document.write(fruits.indexOf("수박", 3) + "<br />"); // 4 → 3번째 인덱스부터 검색 시작
+      document.write(fruits.indexOf("바나나")); // -1
+    </script>
+  </body>
+</html>

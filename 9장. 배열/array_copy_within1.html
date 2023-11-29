@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // copyWithin() 메서드 사용 예 1
+
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      // 4 → 배열 요소의 복사가 시작되는 인덱스
+      // 0 → 인덱스 0부터 끝까지의 요소를 다른 위치에 복사
+      document.write(numbers.copyWithin(4, 0) + "<br />"); // 1,2,3,4,1,2,3,4,5,6
+      document.write(numbers); // 1,2,3,4,1,2,3,4,5,6
+    </script>
+  </body>
+</html>
