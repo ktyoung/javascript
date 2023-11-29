@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 배열과 객체의 차이
+
+      const member1 = ["홍길동", "010-1234-5678", 30]; // 배열
+      const member2 = { name: "홍길동", phone: "010-1234-5678", age: 30 }; // 객체
+
+      document.write(typeof member1 + "<br />"); // object
+      document.write(typeof member2 + "<br />"); // object
+      document.write(member1[0] + "<br />"); // 홍길동 → 인덱스를 통해 요소에 접근
+      document.write(member2.name); // 홍길동 → . 연산자와 객체의 키를 이용해 요소에 접근
+    </script>
+  </body>
+</html>

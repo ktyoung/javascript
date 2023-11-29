@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // splice() 메서드 사용 예
+
+      const animals = ["사자", "호랑이", "사슴", "펭귄", "여우", "앵무새"];
+
+      // 인덱스 2인 요소부터 3개의 요소를 삭제하고 "개구리"를 삽입
+      document.write("반환값: " + animals.splice(2, 3, "개구리") + "<br />"); // 반환값: 사슴,펭귄,여우
+      document.write(animals + "<br />"); // 사자,호랑이,개구리,앵무새
+
+      // 인덱스 1인 요소부터 0개의 요소를 삭제하고 "토끼"를 삽입
+      document.write("반환값: " + animals.splice(1, 0, "토끼") + "<br />"); // 반환값:
+      document.write(animals + "<br />"); // 사자,토끼,호랑이,개구리,앵무새
+
+      // 인덱스 3인 요소부터 1개의 요소를 삭제
+      document.write("반환값: " + animals.splice(3, 1) + "<br />"); // 반환값: 개구리
+      document.write(animals); // 사자,토끼,호랑이,앵무새
+    </script>
+  </body>
+</html>

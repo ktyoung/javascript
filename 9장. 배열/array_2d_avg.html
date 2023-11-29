@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 2차원 배열의 합계와 평균
+
+      const scores = [
+        [83, 90, 70, 87],
+        [87, 93, 62, 83],
+        [98, 90, 77, 97],
+      ];
+      let sum, avg;
+      text = "";
+
+      for (let i = 0; i < 3; i++) {
+        sum = 0;
+
+        for (let j = 0; j < 4; j++) {
+          sum += scores[i][j];
+        }
+
+        avg = sum / 4;
+        text += i + "번째 학생의 합계: " + sum + ", 평균: " + avg + "<br />";
+      }
+
+      document.write(text);
+    </script>
+  </body>
+</html>
