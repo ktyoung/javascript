@@ -2196,3 +2196,347 @@ document.write(/[0-9]/g.test(str1)); // false
 ```
 
 ---
+
+## 9장. 배열
+## 9.1 배열이란?  
+- `배열(array)`은 여러 값을 하나의 변수에 저장할 수 있게 해주는 특별한 변수임.
+- 자바스크립트에서 배열은 Array 객체를 기반으로 함.
+### 9.1.1 배열의 생성  
+- 배열은 대괄호(`[]`)로 요소들을 감싸고 콤마(`,`)로 요소들을 구분하여 사용함.
+```js
+// 배열의 생성 예 1
+const fruits1 = ["사과", "딸기", "참외"];
+
+document.write(fruits1 + "<br />"); // 사과,딸기,참외
+document.write(fruits1[0] + "<br />"); // 사과
+document.write(fruits1[1] + "<br />"); // 딸기
+document.write(fruits1[2] + "<br />"); // 참외
+
+// 배열의 생성 예 2
+const fruits2 = new Array("사과", "딸기", "참외", "오렌지");
+document.write(fruits2); // 사과,딸기,참외,오렌지
+```
+### 9.1.2 배열 요소 값의 변경  
+- 배열의 인덱스로 접근하여 요소에 값을 저장하면 요소 값이 변경됨.
+```js
+// 배열 요소 값의 변경
+
+const fruits = ["사과", "딸기", "참외"];
+fruits[0] = "수박";
+
+document.write(fruits); // 수박,딸기,참외
+```
+### 9.1.3 배열과 객체의 차이  
+- 자바스크립트에서 배열은 객체를 기반으로 하고 있으며, 배열과 객체는 유사한 점이 많지만 차이점도 존재함.
+```js
+// 배열과 객체의 차이
+
+const member1 = ["홍길동", "010-1234-5678", 30]; // 배열
+const member2 = { name: "홍길동", phone: "010-1234-5678", age: 30 }; // 객체
+
+document.write(typeof member1 + "<br />"); // object
+document.write(typeof member2 + "<br />"); // object
+document.write(member1[0] + "<br />"); // 홍길동 → 인덱스를 통해 요소에 접근
+document.write(member2.name); // 홍길동 → . 연산자와 객체의 키를 이용해 요소에 접근
+```
+### 9.1.4 배열 요소 반복 읽기  
+- 배열이 `For` 문과 같은 반복문과 같이 사용되면 다수의 데이터를 쉽게 처리할 수 있음.
+```js
+// 배열 요소를 반복해서 읽기
+
+const fruits = ["사과", "딸기", "참외"];
+
+for (let i = 0; i < fruits.length; i++) {
+	document.write(fruits[i] + "<br />"); // 사과 딸기 참외
+}
+```
+
+---
+## 9.2 배열 요소 변환/추가/삭제  
+### 9.2.1 join() 메서드  
+- `join()` 메서드는 배열을 문자열로 변환하는 데 사용됨.
+- 매개변수가 사용되지 않으면 기본 구분자인 `,`가 사용됨.
+```js
+// join() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄"];
+
+// 배열의 요소를 ,로 구분한 문자열로 반환
+document.write(animals.join() + "<br />"); // 사자,호랑이,사슴,펭귄
+
+// 배열의 요소를 /로 구분한 문자열로 반환
+document.write(animals.join("/")); // 사자/호랑이/사슴/펭귄
+```
+### 9.2.2 push() 메서드  
+- `push()` 메서드는 배열의 끝에 새로운 요소를 추가하는 데 사용됨.
+```js
+// push() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄"];
+animals.push("이구아나"); // 배열의 끝에 "이구아나"를 추가
+
+document.write(animals + "<br />"); // 사자,호랑이,사슴,펭귄,이구아나
+```
+### 9.2.3 pop() 메서드  
+- `pop()` 메서드는 배열의 마지막 요소를 삭제하는 데 사용됨.
+- `pop()` 메서드의 반환 값은 삭제된 요소임.
+```js
+// pop() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄"];
+
+document.write("반환값: " + animals.pop() + "<br />"); // 반환값: 펭귄
+document.write(animals); // 사자,호랑이,사슴
+```
+### 9.2.4 shift() 메서드  
+- `shift()` 메서드는 배열의 첫 요소를 삭제하는 데 사용됨.
+- `shift()` 메서드의 반환 값은 삭제된 요소임.
+```js
+// shift() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄"];
+
+document.write("반환값: " + animals.shift() + "<br />"); // 반환값: 사자
+document.write(animals); // 호랑이,사슴,펭귄
+```
+### 9.2.5 splice() 메서드  
+- `splice()` 메서드는 배열에 요소를 추가하거나 삭제할 때 사용됨.
+- `splice()` 메서드의 반환 값은 삭제된 요소임.
+```js
+// splice() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄", "여우", "앵무새"];
+
+// 인덱스 2인 요소부터 3개의 요소를 삭제하고 "개구리"를 삽입
+document.write("반환값: " + animals.splice(2, 3, "개구리") + "<br />"); // 반환값: 사슴,펭귄,여우
+document.write(animals + "<br />"); // 사자,호랑이,개구리,앵무새
+
+// 인덱스 1인 요소부터 0개의 요소를 삭제하고 "토끼"를 삽입
+document.write("반환값: " + animals.splice(1, 0, "토끼") + "<br />"); // 반환값:
+document.write(animals + "<br />"); // 사자,토끼,호랑이,개구리,앵무새
+
+// 인덱스 3인 요소부터 1개의 요소를 삭제
+document.write("반환값: " + animals.splice(3, 1) + "<br />"); // 반환값: 개구리
+document.write(animals); // 사자,토끼,호랑이,앵무새
+```
+
+---
+## 9.3 배열 요소 추출/검색  
+### 9.3.1 indexOf() 메서드  
+- `indexOf()` 메서드는 배열에서 특정 문자열의 위치, 즉 인덱스 값을 반환함.
+- 해당 요소가 존재하지 않을 경우 `-1`을 반환함.
+```js
+// indexOf() 메서드 사용 예
+
+const fruits = ["사과", "오렌지", "수박", "감", "수박", "딸기", "키위"];
+
+document.write(fruits.indexOf("수박") + "<br />"); // 2
+document.write(fruits.indexOf("수박", 3) + "<br />"); // 4 → 3번째 인덱스부터 검색 시작
+document.write(fruits.indexOf("바나나")); // -1
+```
+### 9.3.2 includes() 메서드  
+- `includes()` 메서드는 배열에서 특정 요소의 존재 여부를 파악하는 데 사용됨.
+- 배열에 특정 요소가 존재하면 `true`, 그렇지 않으면 `false`를 반환함.
+```js
+// includes() 메서드 사용 예
+
+const fruits = ["사과", "오렌지", "수박", "감", "키위"];
+
+document.write(fruits.includes("키위") + "<br />"); // true
+document.write(fruits.includes("파인애플")); // false
+```
+### 9.3.3 slice() 메서드  
+- `slice()` 메서드는 배열에서 인덱스를 이용하여 특정 요소를 추출하는 데 사용됨.
+```js
+// slice() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄", "여우", "앵무새"];
+
+// 인덱스 1인 요소부터 3-1번 요소까지 추출
+document.write(animals.slice(1, 3) + "<br />"); // 호랑이,사슴
+
+// 인덱스 2인 요소부터 마지막 요소까지 추출
+document.write(animals.slice(2) + "<br />"); // 사슴,펭귄,여우,앵무새
+
+// 끝에서 3번째 요소부터 2번째 요소까지 추출
+document.write(animals.slice(-3, -1)); // 펭귄,여우
+```
+### 9.3.4 find() 메서드  
+- `find()` 메서드는 배열에서 특정 요소를 찾는 조건을 콜백 함수를 통해 전달하여 조건에 해당하는 첫번째 요소를 반환함.
+- 배열에서 조건에 맞는 요소가 존재하지 않으면 `undefined` 값을 반환함.
+```js
+// find() 메서드 사용 예
+
+const scores = [78, 84, 98, 100, 67, 87];
+
+document.write(
+	scores.find(function (score) {
+		return score >= 90; // 98 → 처음으로 90 이상이 되는 수
+	})
+);
+```
+### 9.3.5 forEach() 메서드  
+- `forEach()` 메서드는 배열 각 요소에 대해 매개변수로 설정된 함수를 실행함.
+```js
+// forEach() 메서드 사용 예
+
+const animals = ["사자", "호랑이", "사슴", "펭귄"];
+
+animals.forEach(function (item, index) {
+	document.write(index + ":" + item + "<br />"); // 0:사자 1:호랑이 2:사슴 3:펭귄
+});
+```
+### 9.3.6 map() 메서드  
+- `map()` 메서드는 배열 각 요소에 대해 매개변수로 설정된 함수를 실행하여 얻어진 요소들로 구성된 새로운 함수를 반환함.
+- `forEach()` 메서드와 달리 매개변수로 사용되는 함수에서 반환 값이 존재하며, 원본의 배열을 두고 새로운 배열을 생성하는 것이 차이점임.
+```js
+// map() 메서드 사용 예
+
+const numbers = [1, 2, 3, 4, 5];
+
+document.write(
+	numbers.map(function (num) {
+		return num * num; // 1,4,9,16,25
+	})
+);
+```
+
+---
+## 9.4 배열 병합/복사/정렬  
+### 9.4.1 concat() 메서드  
+- `concat()` 메서드는 두 개 이상의 배열을 연결할 때 사용함.
+- 기존 배열의 내용은 변경되지 않고, 병합된 새로운 배열을 반환함.
+```js
+// concat() 메서드 사용 예
+
+const animals1 = ["사자", "호랑이", "사슴", "펭귄"];
+const animals2 = ["개미", "메뚜기", "풍뎅이"];
+
+document.write(animals1.concat(animals2) + "<br />"); // 사자,호랑이,사슴,펭귄,개미,메뚜기,풍뎅이
+document.write(animals1 + "<br />"); // 사자,호랑이,사슴,펭귄
+document.write(animals2); // 개미,메뚜기,풍뎅이
+```
+### 9.4.2 copyWithin() 메서드  
+- `copyWithin()` 메서드는 배열에서 특정 요소들을 배열 내 다른 위치에 복사하는 데 사용됨.
+- 기존 배열에 대해 덮어쓰기로 복사 작업이 진행됨.
+```js
+// copyWithin() 메서드 사용 예 1
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// 4 → 배열 요소의 복사가 시작되는 인덱스
+// 0 → 인덱스 0부터 끝까지의 요소를 다른 위치에 복사
+document.write(numbers.copyWithin(4, 0) + "<br />"); // 1,2,3,4,1,2,3,4,5,6
+document.write(numbers); // 1,2,3,4,1,2,3,4,5,6
+```
+
+```js
+// copyWithin() 메서드 사용 예 2
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// 5 → 배열 요소의 복사가 시작되는 인덱스
+// 0, 3 → 인덱스 0부터 인덱스 3-1까지의 요소를 다른 위치에 복사
+// 인덱스 5 위치에, 인덱스 0부터 2까지의 요소를 복사
+document.write(numbers.copyWithin(5, 0, 3)); // 1,2,3,4,5,1,2,3,9,10
+```
+### 9.4.3 sort() / reverse() 메서드  
+- `sort()` 메서드는 배열에서 요소들을 오름차순으로 정렬할 때 사용함.
+- `reverse()` 메서드는 배열에서 요소들을 내림차순으로 정렬할 때 사용함.
+```js
+// sort() / reverse() 메서드 사용 예
+
+const numbers = ["코끼리", "사자", "호랑이", "사슴", "펭귄", "풍뎅이"];
+
+document.write(numbers.sort() + "<br />"); // 사슴,사자,코끼리,펭귄,풍뎅이,호랑이
+document.write(numbers.reverse()); // 호랑이,풍뎅이,펭귄,코끼리,사자,사슴
+```
+
+---
+## 9.5 2차원 배열  
+
+### 9.5.1 2차원 배열 생성  
+- 자바스크립트에서 `2차원 배열`은 배열의 각 요소가 배열인 경우를 의미함.
+```js
+// 2차원 배열 생성 예
+
+const arr = [
+	[1, 2],
+	[3, 4],
+	[5, 6],
+	[7, 8],
+];
+
+document.write(arr[2][0] + "<br />"); // 5 → 3행 1열
+document.write(arr[2][1]); // 6 → 3행 2열
+```
+
+```js
+// 2차원 배열 생성 예
+
+const arr = new Array(5);
+
+for (let i = 0; i < arr.length; i++) {
+	arr[i] = new Array(3);
+}
+
+document.write(arr); // 5행 3열의 빈 2차원 배열 생성
+```
+### 9.5.2 2차원 배열에 값 입력  
+```js
+// 2차원 배열에 값 입력
+
+const arr = new Array(4);
+for (let i = 0; i < arr.length; i++) {
+	arr[i] = new Array(3);
+}
+
+let num = 1;
+for (let i = 0; i < 4; i++) {
+	for (let j = 0; j < 3; j++) {
+		arr[i][j] = num;
+		num++;
+	}
+}
+
+let text = "";
+for (let i = 0; i < 4; i++) {
+	for (let j = 0; j < 3; j++) {
+		text += arr[i][j] + " ";
+	}
+	text += "<br />";
+}
+
+document.write(text);
+// 1 2 3
+// 4 5 6
+// 7 8 9
+// 10 11 12
+```
+### 9.5.3 2차원 배열의 합계와 평균  
+```js
+// 2차원 배열의 합계와 평균
+
+const scores = [
+	[83, 90, 70, 87],
+	[87, 93, 62, 83],
+	[98, 90, 77, 97],
+];
+let sum, avg;
+text = "";
+
+for (let i = 0; i < 3; i++) {
+	sum = 0;
+	
+	for (let j = 0; j < 4; j++) {
+		sum += scores[i][j];
+	}
+	
+	avg = sum / 4;
+	text += i + "번째 학생의 합계: " + sum + ", 평균: " + avg + "<br />";
+}
+
+document.write(text);
+```
+
+---
