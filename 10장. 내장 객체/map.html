@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Map 객체 생성하기
+
+      const fruits = new Map([
+        ["사과", 10],
+        ["오렌지", 20],
+        ["수박", 30],
+      ]);
+
+      fruits.forEach(function (value, key) {
+        document.write(key + " : " + value + "<br />"); // 사과 : 10, 오렌지 : 20, 수박 : 30
+      });
+    </script>
+  </body>
+</html>

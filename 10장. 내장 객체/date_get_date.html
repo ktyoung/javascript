@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 현재 날짜 가져오기
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1; // 실제 월을 얻기 위해서는 1을 더해주어야 한다
+      const date = now.getDate();
+
+      document.write(year + "년 " + month + "월 " + date + "일"); // 2023년 12월 3일
+    </script>
+  </body>
+</html>

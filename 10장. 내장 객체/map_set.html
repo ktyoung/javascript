@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Map 객체의 set() 메서드
+
+      const pets = new Map();
+      pets.set("강아지", 100);
+      pets.set("고양이", 200);
+      pets.set("앵무새", 300);
+
+      pets.forEach(function (value, key) {
+        document.write(key + " : " + value + "<br />"); // 강아지 : 100, 고양이 : 200, 앵무새 : 300
+      });
+    </script>
+  </body>
+</html>
