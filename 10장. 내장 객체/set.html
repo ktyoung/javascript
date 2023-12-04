@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Set 객체 생성하기
+
+      // Set 객체에서는 요소의 중복을 허용하지 않으므로 set1의 요소는 2, 3, 5, 7
+      const set1 = new Set([2, 3, 5, 5, 7, 7]);
+
+      // 인덱스로 요소에 접근할 수 없으므로 `for of` 문을 이용하여 객체의 요소 순회
+      for (let value of set1) {
+        document.write(value + "<br />"); // 2, 3, 5, 7
+      }
+    </script>
+  </body>
+</html>

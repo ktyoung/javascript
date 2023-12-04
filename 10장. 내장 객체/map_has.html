@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Map 객체의 has() 메서드
+
+      const fruits = new Map([
+        ["사과", 10],
+        ["오렌지", 20],
+        ["수박", 30],
+      ]);
+
+      document.write(fruits.has("오렌지") + "<br />"); // true
+      document.write(fruits.has("파인애플")); // false
+    </script>
+  </body>
+</html>
