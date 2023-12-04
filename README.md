@@ -2540,3 +2540,314 @@ document.write(text);
 ```
 
 ---
+
+## 10장. 내장 객체
+## 10.1 Math 객체  
+- `Math` 객체는 수학적 연산을 위한 다양한 메서드를 제공함.
+### 10.1.1 min()/max() 메서드  
+- `min()` 메서드와 `max()` 메서드는 주어진 숫자에 대해 최솟값과 최댓값을 구하는 데 사용됨.
+```js
+// min() / max() 메서드로 최솟값과 최댓값 구하기
+
+	let min_value = Math.min(5, 12, 31, 2, 8);
+	let max_value = Math.max(5, 12, 31, 2, 8);
+
+	document.write(min_value + "<br />"); // 2
+	document.write(max_value); // 31
+```
+### 10.1.2 abs() 메서드  
+- `abs()` 메서드는 숫자의 절댓값을 구하는 데 사용됨.
+```js
+// abs() 메서드로 절댓값 구하기
+
+document.write(Math.abs(-8.3) + "<br />"); // 8.3
+document.write(Math.abs(-2) + "<br />"); // 2
+document.write(Math.abs("a") + "<br />"); // NaN
+document.write(Math.abs(6)); // 6
+```
+### 10.1.3 round() 메서드  
+- `round()` 메서드는 숫자의 반올림 값을 구하는 데 사용됨.
+```js
+// round() 메서드로 반올림 값 구하기
+
+document.write(Math.round(5.8) + "<br />"); // 6
+document.write(Math.round(5.3) + "<br />"); // 5
+document.write(Math.round(-3.75) + "<br />"); // -4
+document.write(Math.round(-3.1)); // -3
+```
+### 10.1.4 floor() 메서드  
+- `floor()` 메서드는 숫자에서 소수점 이하 값을 버리는 데 사용됨.
+```js
+// floor() 메서드로 내림값 구하기
+
+document.write(Math.floor(7.8) + "<br />"); // 7
+document.write(Math.floor(7.3) + "<br />"); // 7
+document.write(Math.floor(-2.75) + "<br />"); // -3
+document.write(Math.floor(-2.1)); // -3
+```
+### 10.1.5 ceil() 메서드
+- `ceil()` 메서드는 숫자에서 소수점 이하 값을 올림하는 데 사용됨.
+```js
+// ceil() 메서드로 올림값 구하기
+
+document.write(Math.ceil(3.8) + "<br />"); // 4
+document.write(Math.ceil(3.3) + "<br />"); // 4
+document.write(Math.ceil(-6.75) + "<br />"); // -6
+document.write(Math.ceil(-6.1)); // -6
+```
+### 10.1.6 pow() 메서드  
+- `pow(x, y)` 메서드는 `x`에 대한 `y`의 거듭제곱을 구하는 데 사용됨.
+```js
+// pow() 메서드로 거듭제곱 값 구하기
+
+document.write(Math.pow(2, 3) + "<br />"); // 8
+document.write(Math.pow(1, 10) + "<br />"); // 1
+document.write(Math.pow(-3, 3) + "<br />"); // -27
+document.write(Math.pow(2, -2)); // 0.25
+```
+### 10.1.7 sqrt() 메서드  
+- `sqrt()` 메서드는 주어진 숫자의 제곱근 값을 구하는 데 사용됨.
+```js
+// sqrt() 메서드로 제곱근 값 구하기
+
+document.write(Math.sqrt(25) + "<br />"); // 5
+document.write(Math.sqrt(1) + "<br />"); // 1
+document.write(Math.sqrt(2) + "<br />"); // 1.4142135623730951
+document.write(Math.sqrt(-9)); // NaN
+```
+### 10.1.8 log() 메서드  
+- `log()` 메서드는 주어진 숫자의 자연 로그 값을 구하는 데 사용됨.
+```js
+// log() 메서드로 자연 로그 값 구하기
+
+document.write(Math.log(2.8) + "<br />"); // 1.0296194171811581
+document.write(Math.log(1) + "<br />"); // 0
+document.write(Math.log("a") + "<br />"); // NaN
+document.write(Math.log(-3) + "<br />"); // NaN
+```
+### 10.1.9 random() 메소드  
+- `random()` 메서드는 0에서 1(1은 포함되지 않음) 사이의 무작위 값을 얻는 데 사용됨.
+```js
+// random() 메서드로 자연 로그 값 구하기
+
+document.write(Math.random() + "<br />"); // 0.3176943126317824
+document.write(Math.random() + "<br />"); // 0.20889034023340924
+document.write(Math.floor(Math.random() * 100) + 1 + "<br />"); // 21
+document.write(Math.floor(Math.random() * 100) + 1); // 18
+```
+
+---
+## 10.2 Date 객체
+- `Date` 객체는 날짜와 시간을 처리하는 데 사용됨.
+- 1970년 1월 1일 00:00(UTC)을 기점으로 현재 시간까지의 시간을, 밀리초를 계산한 숫자로 날짜와 시간을 나타냄.
+### 10.2.1 현재 날짜와 시간  
+- `Date()` 생성자 함수를 이용하여 현재 날짜와 시간을 구할 수 있음.
+```js
+// Date() 생성자 함수로 현재 날짜와 시간 구하기
+
+document.write(new Date()); // Sun Dec 03 2023 20:50:33 GMT+0900 (한국 표준시)
+```
+### 10.2.2 날짜 가져오기  
+- `getFullYear()`, `getMonth()`, `getDate()` 메서드를 사용하여 연, 월, 일을 가져올 수 있음.
+```js
+// 현재 날짜 가져오기
+
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1; // 실제 월을 얻기 위해서는 1을 더해주어야 한다
+const date = now.getDate();
+
+document.write(year + "년 " + month + "월 " + date + "일"); // 2023년 12월 3일
+```
+### 10.2.3 시간 가져오기  
+- `getHours()`, `getMinutes()`, `getSeconds()` 메서드를 사용하여 시, 분, 초를 가져올 수 있음.
+```js
+// 현재 시간 가져오기
+
+const now = new Date();
+const hour = now.getHours();
+const min = now.getMinutes();
+const second = now.getSeconds();
+
+document.write(hour + "시 " + min + "분 " + second + "초"); // 20시 54분 43초
+```
+### 10.2.4 날짜와 시간 설정하기  
+- `Date` 객체의 생성자 `Date()`를 이용하면 특정 날짜와 시간을 설정할 수 있음.
+```js
+// 날짜와 시간 설정하기
+
+// 연, 월, 일, 시, 분, 초
+// Thu Dec 25 2025 10:30:25 GMT+0900 (한국 표준시)
+document.write(new Date(2025, 11, 25, 10, 30, 25) + "<br />");
+
+// 연, 월, 일, 시, 분
+// Sun Sep 13 1998 18:20:00 GMT+0900 (한국 표준시)
+document.write(new Date(1998, 8, 13, 18, 20) + "<br />");
+
+// 연, 월, 일
+// Sun Feb 20 2000 00:00:00 GMT+0900 (한국 표준시)
+document.write(new Date(2000, 1, 20));
+```
+
+---
+## 10.3 Set 객체  
+- `Set` 객체는 요소들이 중복되지 않는 유일한 값을 가진 집합임.
+- 수학에서 집합의 개념과 유사하며, 배열과 비슷하지만 다음과 같은 차이가 있음.
+    - 요소가 중복된 값을 가지지 않음.
+    - 요소에 순서가 없음.
+    - 인덱스를 사용하지 않음.
+### 10.3.1 Set 객체 생성  
+- `Set` 객체를 생성하기 위해서는 생성자 함수 `Set()`와 `new` 연산자를 이용함.
+```js
+// Set 객체 생성하기
+
+// Set 객체에서는 요소의 중복을 허용하지 않으므로 set1의 요소는 2, 3, 5, 7
+const set1 = new Set([2, 3, 5, 5, 7, 7]);
+
+// 인덱스로 요소에 접근할 수 없으므로 `for of` 문을 이용하여 객체의 요소 순회
+for (let value of set1) {
+	document.write(value + "<br />"); // 2, 3, 5, 7
+}
+```
+### 10.3.2 add() 메서드  
+- `add()` 메서드를 이용하여 요소를 추가할 수 있음.
+```js
+// Set 객체의 add() 메서드
+
+const set1 = new Set();
+set1.add("사과");
+set1.add("수박");
+set1.add("오렌지");
+
+for (let value of set1) {
+	document.write(value + "<br />"); // 사과, 수박, 오렌지
+}
+```
+### 10.3.3 size 프로퍼티  
+- `size` 프로퍼티를 이용하면 요소의 개수를 구할 수 잇음.
+```js
+// Set 객체의 size() 메서드
+
+const set1 = new Set("hello");
+
+for (let value of set1) {
+	document.write(value + "<br />"); // h, e, l, o
+}
+document.write("set1 크기: " + set1.size); // set1 크기: 4
+```
+### 10.3.4 has() 메서드  
+- `has()` 메서드는 특정 요소의 존재 여부를 판단하는 데 사용됨.
+```js
+// Set 객체의 has() 메서드
+
+const set1 = new Set(["사과", "오렌지", "수박"]);
+
+document.write(set1.has("사과") + "<br />"); // true
+document.write(set1.has("키위")); // false
+```
+### 10.3.5 delete() 메서드  
+- `delete()` 메서드는 특정 요소를 삭제하는 데 사용됨.
+```js
+// Set 객체의 delete() 메서드
+
+const set1 = new Set(["사과", "오렌지", "수박"]);
+set1.delete("오렌지");
+
+for (let value of set1) {
+	document.write(value + "<br />"); // 사과, 수박
+}
+```
+
+---
+## 10.4 Map 객체  
+- `Map` 객체는 키-값으로 구성된 자료 구조임.
+- `Map` 객체에서 키는 숫자, 문자열, 배열, 객체 등 어떠한 데이터 형도 사용 가능함.
+- `Map` 객체는 `Set` 객체와 달리 요소에 순서가 있음.
+### 10.4.1 Map 객체 생성  
+- `new` 연산자와 생성자 함수 `Map()`의 인수에 배열을 이용하면 `Map` 객체를 생성할 수 있음.
+```js
+// Map 객체 생성하기
+
+const fruits = new Map([
+	["사과", 10],
+	["오렌지", 20],
+	["수박", 30],
+]);
+
+fruits.forEach(function (value, key) {
+	document.write(key + " : " + value + "<br />"); // 사과 : 10, 오렌지 : 20, 수박 : 30
+});
+```
+### 10.4.2 set() 메서드  
+- `set()` 메서드는 `Map` 객체에 키와 값으로 구성된 요소를 설정하는 데 사용됨.
+```js
+// Map 객체의 set() 메서드
+
+const pets = new Map();
+pets.set("강아지", 100);
+pets.set("고양이", 200);
+pets.set("앵무새", 300);
+
+pets.forEach(function (value, key) {
+	document.write(key + " : " + value + "<br />"); // 강아지 : 100, 고양이 : 200, 앵무새 : 300
+});
+```
+### 10.4.3 get() 메서드  
+- `get()` 메서드는 특정 키에 해당하는 값을 가져오는 데 사용됨.
+```js
+// Map 객체의 get() 메서드
+
+const fruits = new Map([
+	["사과", 10],
+	["오렌지", 20],
+	["수박", 30],
+]);
+
+document.write(fruits.get("오렌지")); // 20
+```
+### 10.4.4 has() 메서드  
+- `has()` 메서드는 특정 키가 객체에 존재하는지 체크하는 데 사용됨.
+```js
+// Map 객체의 has() 메서드
+
+const fruits = new Map([
+	["사과", 10],
+	["오렌지", 20],
+	["수박", 30],
+]);
+
+document.write(fruits.has("오렌지") + "<br />"); // true
+document.write(fruits.has("파인애플")); // false
+```
+### 10.4.5 delete() 메서드  
+- `delete()` 메서드는 특정 키를 가진 요소를 삭제하는 데 사용됨.
+```js
+// Map 객체의 delete() 메서드
+
+const fruits = new Map([
+	["사과", 10],
+	["오렌지", 20],
+	["수박", 30],
+]);
+fruits.delete("사과");
+
+fruits.forEach(function (value, key) {
+	document.write(key + " : " + value + "<br />"); // 오렌지 : 20, 수박 : 30
+});
+```
+### 10.4.6 size 프로퍼티  
+- `size` 프로퍼티는 요소의 크기, 즉 요소의 개수를 구하는 데 사용됨.
+```js
+// Map 객체의 size 프로퍼티
+
+const fruits = new Map([
+	["사과", 10],
+	["오렌지", 20],
+	["수박", 30],
+	["키위", 40],
+]);
+
+document.write(fruits.size); // 4
+```
+
+---
