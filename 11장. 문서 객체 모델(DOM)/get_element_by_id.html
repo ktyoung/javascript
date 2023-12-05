@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1">안녕하세요.</p>
+    <button onclick="changeColor('red')">빨강</button>
+    <button onclick="changeColor('blue')">파랑</button>
+    <script>
+      // 아이디로 HTML 요소 선택
+
+      function changeColor(new_color) {
+        const elem = document.getElementById("p1");
+        elem.style.color = new_color;
+      }
+    </script>
+  </body>
+</html>

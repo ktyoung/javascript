@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문서가 로드될 때 글 제목 요소 생성
+
+      // onload() 메서드는 자바스크립트 문서가 로드될 때 자동으로 호출
+      window.onload = function () {
+        let element = document.createElement("h1"); // <h1> 요소 생성
+        let text = document.createTextNode("글 제목"); // "글 제목"이라는 텍스트 노드 생성
+        element.appendChild(text); // <h1> 요소에 "글 제목" 추가
+        document.body.appendChild(element); // <body> 요소에 <h1> 요소 추가
+      };
+    </script>
+  </body>
+</html>

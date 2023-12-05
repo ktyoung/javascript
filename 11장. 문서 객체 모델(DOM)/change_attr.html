@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box" style="width: 100px; height: 100px; background-color: coral"></div>
+    <button type="button" onclick="changeBackgroundColor('skyblue')">배경색 변경</button>
+    <button type="button" onclick="changeSize(50, 50)">크기 변경</button>
+    <script>
+      // HMTL 요소의 속성 값 변경하기
+
+      const box = document.getElementById("box");
+
+      function changeBackgroundColor(new_color) {
+        document.getElementById("box").style.backgroundColor = new_color;
+      }
+
+      function changeSize(new_width, new_height) {
+        document.getElementById("box").style.width = new_width + "px";
+        document.getElementById("box").style.height = new_height + "px";
+      }
+    </script>
+  </body>
+</html>

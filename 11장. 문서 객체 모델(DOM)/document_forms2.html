@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="form1">
+      아이디: <input type="text" name="id" /><br />
+      이름: <input type="text" name="name" /><br />
+      비밀번호: <input type="password" name="pass" /><br />
+    </form>
+    <button onclick="getInput()">확인</button>
+    <p id="show"></p>
+    <script>
+      // forms 프로퍼티로 <form> 요소 값 가져오기
+
+      function getInput() {
+        const x = document.forms["form1"];
+        let text = "";
+        for (let i = 0; i < x.length; i++) {
+          text += x.elements[i].value + "\n";
+        }
+
+        document.getElementById("show").innerText = text;
+      }
+    </script>
+  </body>
+</html>
