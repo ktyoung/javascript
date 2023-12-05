@@ -2851,3 +2851,455 @@ document.write(fruits.size); // 4
 ```
 
 ---
+
+## 11장. 문서 객체 모델(DOM)
+## 11.1 문서 객체 모델(DOM)이란?  
+- `문서 객체 모델(DOM, Document Object Model)`은 XML이나 HTML 문서의 구조화된 표현임.
+- DOM은 HTML 문서에 접근하여 문서를 읽고 조작할 수 있는 API를 제공하는 인터페이스라고 할 수 있음.
+### 11.1.1 DOM의 구조  
+- DOM은 HTML `요소`, `속성`, `내용` 등으로 구성된 트리 구조를 가짐.
+### 11.1.2 DOM의 메서드와 프로퍼티
+- DOM 메서드와 프로퍼티를 이용하여 웹 페이지에 있는 요소의 내용을 변경할 수 있음.
+```html
+<p id="p1"></p>
+
+<script>
+	// <p> 요소의 내용 변경 예
+	document.getElementById("p1").innerHTML = "안녕!";
+</script>
+```
+
+```js
+// 문서가 로드될 때 글 제목 요소 생성
+
+// onload() 메서드는 자바스크립트 문서가 로드될 때 자동으로 호출
+window.onload = function () {
+	let element = document.createElement("h1"); // <h1> 요소 생성
+	let text = document.createTextNode("글 제목"); // "글 제목"이라는 텍스트 노드 생성
+	element.appendChild(text); // <h1> 요소에 "글 제목" 추가
+	document.body.appendChild(element); // <body> 요소에 <h1> 요소 추가
+};
+```
+### 11.1.3 Document 객체  
+- `Document` 객체는 웹 페이지에 있는 모든 객체들의 소유주라고 할 수 있음.
+- `Document` 객체를 이용하여 웹 페이지에 있는 모든 요소들에 접근할 수 있음.
+```html
+<form name="form1">
+	이름: <input type="text" name="name" /><br />
+	<button onclick="get_name()">버튼</button>
+</form>
+
+<script>
+	// Document 객체로 요소에 접근하기
+	function get_name() {
+	// 1. document.form1.name은 form1 요소 안의 name 객체, 즉 <input> 요소를 의미함
+	// 2. value 속성은 <input> 요소에 입력된 텍스트를 의미함
+		let text = document.form1.name.value;
+		alert(text);
+	}
+</script>
+```
+
+---
+## 11.2 HTML 요소 선택  
+### 11.2.1 아이디로 요소 선택하기  
+- 요소의 아이디(`id`)와 `getElementById()` 메서드를 이용하여 DOM에서 HTML 요소를 선택할 수 있음.
+```html
+<p id="p1">안녕하세요.</p>
+<button onclick="changeColor('red')">빨강</button>
+<button onclick="changeColor('blue')">파랑</button>
+
+<script>
+	// 아이디로 HTML 요소 선택
+	function changeColor(new_color) {
+		const elem = document.getElementById("p1");
+		elem.style.color = new_color;
+	}
+</script>
+```
+### 11.2.2 태그 이름으로 요소 선택하기  
+- `getElementsByTagName()` 메서드는 HTML 태그 이름으로 요소를 선택할 때 사용됨.
+```html
+<div id="parent">
+	<p>안녕1</p>
+	<p>안녕2</p>
+	<p>안녕3</p>
+	<p>안녕4</p>
+	<p>안녕5</p>
+</div>
+
+<script>
+	// 태그 이름으로 HTML 요소 선택
+	const x = document.getElementById("parent");
+	const y = x.getElementsByTagName("p");
+
+	y[2].style.color = "red";
+</script>
+```
+### 11.2.3 클래스 이름으로 요소 선택하기  
+- `getElementsByClassName()` 메서드는 클래스 이름으로 요소들을 선택할 때 사용됨.
+```html
+<div id="parent">
+	<p>안녕1</p>
+	<p>안녕2</p>
+	<p class="a">안녕3</p>
+	<p class="a">안녕4</p>
+	<p class="a">안녕5</p>
+</div>
+
+<script>
+	// 태그 이름으로 HTML 요소 선택
+	const x = document.getElementById("parent");
+	const y = x.getElementsByClassName("a");
+	
+	for (let i = 0; i < y.length; i++) {
+		y[i].style.color = "red";
+	}
+</script>
+```
+### 11.2.4 CSS 선택자로 요소 선택하기  
+- `querySelector()` 메서드는 CSS 선택자에 의해 선택된 요소 중 첫 번째 요소를 반환함.
+```html
+<div id="parent">
+	<p>안녕1</p>
+	<p>안녕2</p>
+	<p class="a">안녕3</p>
+	<p class="a">안녕4</p>
+	<p class="a">안녕5</p>
+</div>
+
+<script>
+	// querySelector() 메서드 사용 예
+	const x = document.querySelector("p.a");
+	x.style.backgroundColor = "skyblue";
+</script>
+```
+- `querySelectorAll()` 메서드는 CSS 선택자에 의해 선택된 모든 요소들의 `콜렉션(collection)`을 반환함.
+```html
+<h1 id="title">글 제목</h1>
+<p>단락1</p>
+<ul>
+	<li>항목1</li>
+	<li class="item">항목2</li>
+	<li class="item">항목3</li>
+	<li class="item">항목4</li>
+</ul>
+
+<script>
+	// querySelectorAll() 메서드 사용 예
+	const x = document.querySelectorAll("h1#title");
+	const y = document.querySelectorAll("p");
+	const z = document.querySelectorAll("li.item");
+
+	x[0].style.backgroundColor = "coral";
+	y[0].style.backgroundColor = "lightgreen";
+	z[1].style.backgroundColor = "skyblue";
+</script>
+```
+
+---
+## 11.3 HTML 요소 내용과 속성  
+### 11.3.1 요소 내용 가져오기  
+- `innerHTML`과 `innerText` 프로퍼티를 이용하면 HTML 요소의 내용을 가져올 수 있음.
+```html
+<p id="p1">
+	<span style="color: red">안녕</span>
+</p>
+
+<script>
+	// innerHTML, innerText로 요소의 내용 가져오기
+	const x = document.getElementById("p1");
+	alert(x.innerHTML); // <span style="color: red">안녕</span>
+	alert(x.innerText); // 안녕
+</script>
+```
+### 11.3.2 요소 내용 설정오기  
+- `innerHTML`과 `innerText` 프로퍼티를 이용하면 HTML 요소의 내용을 설정할 수 있음.
+```html
+<ul>
+	<li>항목1</li>
+	<li>항목2</li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+<script>
+	// HMTL 요소의 내용 설정하기
+	const x = document.querySelectorAll("li");
+	x[2].innerHTML = "<span style='color : red'>텍스트1</span>";
+	x[3].innerHTML = "텍스트2";
+	x[4].innerText = "텍스트3";
+</script>
+```
+### 11.3.3 요소 속성 변경하기  
+- DOM에서 HTML 객체의 프로퍼티에 값을 설정함으로써 HTML 요소의 속성 값을 변경할 수 있음.
+```html
+<div id="box" style="width: 100px; height: 100px; background-color: coral"></div>
+<button type="button" onclick="changeBackgroundColor('skyblue')">배경색 변경</button>
+<button type="button" onclick="changeSize(50, 50)">크기 변경</button>
+
+<script>
+	// HMTL 요소의 속성 값 변경하기
+	const box = document.getElementById("box");
+
+	function changeBackgroundColor(new_color) {
+		document.getElementById("box").style.backgroundColor = new_color;
+	}
+
+	function changeSize(new_width, new_height) {
+		document.getElementById("box").style.width = new_width + "px";
+		document.getElementById("box").style.height = new_height + "px";
+	}
+</script>
+```
+### 11.3.4 요소 CSS 변경하기  
+- DOM에서 자바스크립트는 HTML 요소의 CSS 스타일을 변경할 수 있음.
+```html
+<p id="p1">안녕</p>
+
+<script>
+	// CSS 스타일 변경하기
+	const x = document.getElementById("p1");
+	x.style.color = "red";
+	x.style.backgroundColor = "yellow";
+	x.style.border = "solid 5px blue";
+</script>
+```
+
+---
+## 11.4 Document 객체의 프로퍼티  
+### 11.4.1 URL 프로퍼티  
+- `URL` 프로퍼티는 문서의 URL 주소를 반환함.
+```js
+// URL 프로퍼티로 URL 주소 가져오기
+
+document.write(document.URL); // file:///.../document_url.html
+```
+### 11.4.2 title 프로퍼티  
+- `title` 프로퍼티는 문서의 제목을 설정하거나 가져오는 데 사용됨.
+```js
+// title 프로퍼티로 문서의 제목 가져오고 수정하기
+
+document.write(document.title); // Document
+document.title = "새로운 문서 제목";
+document.write(document.title); // 새로운 문서 제목
+```
+### 11.4.3 forms 프로퍼티  
+- `forms` 프로퍼티는 문서의 모든 `<form>` 요소를 저장한 `HTMLCollection` 객체를 반환함.
+```html
+<form id="form_id1">
+	이름: <input type="text" name="name" /><br />
+	<button>확인</button>
+</form>
+<form id="form_id2">
+	이름: <input type="text" name="email" /><br />
+	<button>확인</button>
+</form>
+<p id="show"></p>
+
+<script>
+	// forms 프로퍼티로 <form> 요소의 아이디 가져오기
+	const x = document.forms[0].id; // form_id1
+	document.getElementById("show").innerText = x;
+</script>
+```
+
+```html
+<form name="form1">
+	아이디: <input type="text" name="id" /><br />
+	이름: <input type="text" name="name" /><br />
+	비밀번호: <input type="password" name="pass" /><br />
+</form>
+<button onclick="getInput()">확인</button>
+<p id="show"></p>
+
+<script>
+	// forms 프로퍼티로 <form> 요소 값 가져오기
+	function getInput() {
+		const x = document.forms["form1"];
+		let text = "";
+		
+		for (let i = 0; i < x.length; i++) {
+			text += x.elements[i].value + "\n";
+		}
+
+		document.getElementById("show").innerText = text;
+	}
+</script>
+```
+### 11.4.4 links 프로퍼티  
+- `links` 프로퍼티는 문서에서 `<a>` 요소를 포함한 모든 링크 요소로 구성된 `HTMLCollection` 객체를 반환함.
+```html
+<ul>
+	<li><a href="https://naver.com">네이버</a></li>
+	<li><a href="https://daum.net">다음</a></li>
+	<li><a href="https://google.com">구글</a></li>
+</ul>
+
+<script>
+	// links 프로퍼티로 링크 요소의 갯수 알아보기
+	const x = document.links.length;
+	document.write("링크 수: " + x); // 링크 수: 3
+```
+
+```html
+<ul>
+	<li><a href="https://naver.com">네이버</a></li>
+	<li><a href="https://daum.net">다음</a></li>
+	<li><a href="https://google.com">구글</a></li>
+</ul>
+
+<script>
+	// links 프로퍼티로 링크 주소 가져오기
+	const link = document.links;
+	for (let i = 0; i < link.length; i++) {
+		document.write(link[i].href + "<br />"); 
+		// https://naver.com/
+		// https://daum.net/
+		// https://google.com/
+	}
+</script>
+```
+### 11.4.5 images 프로퍼티  
+- `images` 프로퍼티는 문서에서 모든 `<img>` 요소의 콜렉션을 `HTMLCollection` 객체로 반환함.
+```html
+<img src="img/cat.jpg" />
+
+<script>
+	// links 프로퍼티로 링크 주소 가져오기
+	const image = document.images;
+	document.write(image[0].src); // file:///.../img/cat1.jpg
+</script>
+```
+
+---
+## 11.5 HTML 폼 검증  
+- 자바스크립트에서는 HTML 폼에 사용자가 입력한 데이터를 서버로 보내기 전에 유효한 데이터인지 검증할 수 있음.
+### 11.5.1 폼 입력 여부 체크하기  
+```html
+<form name="form1" method="post" onsubmit="return validateForm()">
+	아이디: <input type="text" name="id" /><br />
+	비밀번호: <input type="password" name="pass" /><br />
+	<input type="submit" value="확인" />
+</form>
+
+<script>
+	// 아이디 / 비밀번호 입력 여부 체크하기
+	function validateForm() {
+		if (document.forms["form1"]["id"].value === "") alert("아이디를 입력하세요");
+		if (document.forms["form1"]["pass"].value === "") alert("비밀번호를 입력하세요");
+	}
+</script>
+```
+### 11.5.2 숫자 입력 검증하기  
+```html
+<input id="num" />
+<button type="button" onclick="myFunction()">확인</button>
+<p id="show"></p>
+
+<script>
+	// 입력창에 1~10 숫자 입력 여부 체크하기
+	function myFunction() {
+		let x = document.getElementById("num").value;
+		let text = "";
+
+		if (isNaN(x) || x < 1 || x > 10) {
+			document.getElementById("show").innerHTML = "1~10 숫자를 입력해주세요.";
+		} else {
+			document.getElementById("show").innerHTML = "입력 OK!";
+		}
+	}
+</script>
+```
+
+---
+## 11.6 DOM 노드  
+- DOM 트리의 가장 기본이 되는 HTML 요소, 속성, 텍스트 등은 모두 `노드(node)`에 속함.
+### 11.6.1 노드의 종류  
+- DOM 트리의 최상위는 `루트 노드`이며, 루트 노드 외의 모든 노드는 단 하나의 `부모 노드`만 가짐.
+- `루트 노드`를 포함한 모든 노드는 하나 또는 여러 개의 `자식 노드`를 가질 수 있음.
+- `조상 노드`는 자신보다 상위에 있는 노드를 의미하고, `자손 노드`는 자식 노드를 포함한 자신보다 하위에 있는 노드를 의미함.
+- `형제 노드`는 같은 부모를 가진 노드를 의미함.
+
+| 노드 타입 | 설명 |
+| :------: | :------ | 
+| 요소 노드(element node) | `<body>`, `<p>`, `<div>` 등 모든 HTML 요소를 의미 | 
+| 속성 노드(attribute node) | HTML 요소의 속성을 의미 | 
+| 텍스트 노드(text node) | HTML 문서에 있는 모든 텍스트를 의미 | 
+| 문서 노드(document node) | HTML 문서 전체를 의미, DOM의 `루트 노드(root node)` | 
+| 주석 노드(comment node) | HTML 문서에 있는 모든 주석을 의미 | 
+### 11.6.2 노드 추가하기  
+- DOM 트리에 새로운 노드를 추가하기 위해서는 먼저 노드를 생성한 다음 DOM 트리에 추가해야 함.
+- `appendChild()` 메서드를 이용하여 DOM 트리에 요소 노드를 추가할 수 있음.
+```html
+<div id="box">
+	<p>단락1</p>
+	<p>단락2</p>
+</div>
+
+<script>
+	// appendChild()로 <p> 요소 추가하기
+	const elem = document.createElement("p");
+	const text_node = document.createTextNode("새로운 단락!");
+
+	elem.appendChild(text_node); // 텍스트 노드(text_node)를 elem의 자식으로 추가
+	document.getElementById("box").appendChild(elem);
+</script>
+```
+### 11.6.3 노드 삽입하기  
+- `insertBefore()` 메서드를 이용하여 새로운 노드를 삽입할 수 있음.
+```html
+<div id="box">
+	<p id="p1">단락1</p>
+	<p id="p2">단락2</p>
+</div>
+
+<script>
+	// insertBefore()로 <p> 요소 추가하기
+	const elem = document.createElement("p");
+	const text_node = document.createTextNode("새로운 단락!");
+	elem.appendChild(text_node);
+
+	const p2 = document.getElementById("p2");
+	// p2 요소 앞에 elem 삽입
+	document.getElementById("box").insertBefore(elem, p2);
+</script>
+```
+### 11.6.4 노드 삭제하기  
+- `remove()` 메서드는 DOM 트리에서 노드를 삭제하는 데 사용됨.
+```html
+<div id="box">
+	<p id="p1">단락1</p>
+	<p id="p2">단락2</p>
+	<p id="p3">단락3</p>
+</div>
+
+<script>
+	// remove()로 요소 삭제하기
+	const elem = document.getElementById("p2");
+	elem.remove();
+</script>
+```
+### 11.6.5 노드 변경하기  
+- `replaceChild()` 메서드는 기존 노드를 다른 노드로 변경할 때 사용함.
+```html
+<div id="box">
+	<p id="p1">단락1</p>
+	<p id="p2">단락2</p>
+	<p id="p3">단락3</p>
+</div>
+
+<script>
+	// replaceChild()로 요소 변경하기
+	const elem = document.createElement("p");
+	const text_node = document.createTextNode("새로운 단락!");
+	elem.appendChild(text_node);
+
+	const p1 = document.getElementById("p1");
+	// "단락 1"(p1) 대신 "새로운 단락!"(elem)을 <div> 요소의 자식으로 변경
+	document.getElementById("box").replaceChild(elem, p1);
+</script>
+```
+
+---
