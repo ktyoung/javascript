@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="form1" method="post" onsubmit="return validateForm()">
+      아이디: <input type="text" name="id" /><br />
+      비밀번호: <input type="password" name="pass" /><br />
+      <input type="submit" value="확인" />
+    </form>
+    <script>
+      // 아이디 / 비밀번호 입력 여부 체크하기
+
+      function validateForm() {
+        if (document.forms["form1"]["id"].value === "") alert("아이디를 입력하세요");
+        if (document.forms["form1"]["pass"].value === "") alert("비밀번호를 입력하세요");
+      }
+    </script>
+  </body>
+</html>

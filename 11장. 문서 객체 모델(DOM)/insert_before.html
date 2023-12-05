@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">
+      <p id="p1">단락1</p>
+      <p id="p2">단락2</p>
+    </div>
+    <script>
+      // insertBefore()로 <p> 요소 추가하기
+
+      const elem = document.createElement("p");
+      const text_node = document.createTextNode("새로운 단락!");
+      elem.appendChild(text_node);
+
+      const p2 = document.getElementById("p2");
+      // p2 요소 앞에 elem 삽입
+      document.getElementById("box").insertBefore(elem, p2);
+    </script>
+  </body>
+</html>

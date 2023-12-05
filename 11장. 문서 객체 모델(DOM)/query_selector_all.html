@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="title">글 제목</h1>
+    <p>단락1</p>
+    <ul>
+      <li>항목1</li>
+      <li class="item">항목2</li>
+      <li class="item">항목3</li>
+      <li class="item">항목4</li>
+    </ul>
+    <script>
+      // querySelectorAll() 메서드 사용 예
+
+      const x = document.querySelectorAll("h1#title");
+      const y = document.querySelectorAll("p");
+      const z = document.querySelectorAll("li.item");
+
+      x[0].style.backgroundColor = "coral";
+      y[0].style.backgroundColor = "lightgreen";
+      z[1].style.backgroundColor = "skyblue";
+    </script>
+  </body>
+</html>

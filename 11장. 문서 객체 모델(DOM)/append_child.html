@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">
+      <p>단락1</p>
+      <p>단락2</p>
+    </div>
+    <script>
+      // appendChild()로 <p> 요소 추가하기
+
+      const elem = document.createElement("p");
+      const text_node = document.createTextNode("새로운 단락!");
+
+      elem.appendChild(text_node); // 텍스트 노드(text_node)를 elem의 자식으로 추가
+      document.getElementById("box").appendChild(elem);
+    </script>
+  </body>
+</html>

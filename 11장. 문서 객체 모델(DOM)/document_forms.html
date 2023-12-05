@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form_id1">
+      이름: <input type="text" name="name" /><br />
+      <button>확인</button>
+    </form>
+    <form id="form_id2">
+      이름: <input type="text" name="email" /><br />
+      <button>확인</button>
+    </form>
+    <p id="show"></p>
+    <script>
+      // forms 프로퍼티로 <form> 요소의 아이디 가져오기
+
+      const x = document.forms[0].id; // form_id1
+      document.getElementById("show").innerText = x;
+    </script>
+  </body>
+</html>

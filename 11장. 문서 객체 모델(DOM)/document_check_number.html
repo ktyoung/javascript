@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="num" />
+    <button type="button" onclick="myFunction()">확인</button>
+    <p id="show"></p>
+    <script>
+      // 입력창에 1~10 숫자 입력 여부 체크하기
+
+      function myFunction() {
+        let x = document.getElementById("num").value;
+        let text = "";
+        if (isNaN(x) || x < 1 || x > 10) {
+          document.getElementById("show").innerHTML = "1~10 숫자를 입력해주세요.";
+        } else {
+          document.getElementById("show").innerHTML = "입력 OK!";
+        }
+      }
+    </script>
+  </body>
+</html>

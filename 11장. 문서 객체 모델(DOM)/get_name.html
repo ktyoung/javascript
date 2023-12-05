@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="form1">
+      이름: <input type="text" name="name" /><br />
+      <button onclick="get_name()">버튼</button>
+    </form>
+    <script>
+      // Document 객체로 요소에 접근하기
+
+      function get_name() {
+        // 1. document.form1.name은 form1 요소 안의 name 객체, 즉 <input> 요소를 의미함
+        // 2. value 속성은 <input> 요소에 입력된 텍스트를 의미함
+        let text = document.form1.name.value;
+        alert(text);
+      }
+    </script>
+  </body>
+</html>

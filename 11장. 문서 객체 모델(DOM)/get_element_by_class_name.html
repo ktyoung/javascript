@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="parent">
+      <p>안녕1</p>
+      <p>안녕2</p>
+      <p class="a">안녕3</p>
+      <p class="a">안녕4</p>
+      <p class="a">안녕5</p>
+    </div>
+    <script>
+      // 태그 이름으로 HTML 요소 선택
+
+      const x = document.getElementById("parent");
+      const y = x.getElementsByClassName("a");
+
+      for (let i = 0; i < y.length; i++) {
+        y[i].style.color = "red";
+      }
+    </script>
+  </body>
+</html>
