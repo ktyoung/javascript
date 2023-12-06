@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="showMessage1()">클릭하세요!</button>
+    <button ondblclick="showMessage2()">더블 클릭하세요!</button>
+    <p id="show"></p>
+    <script>
+      function showMessage1() {
+        document.getElementById("show").innerHTML = "클릭했어요!";
+      }
+
+      function showMessage2() {
+        document.getElementById("show").innerHTML = "더블 클릭했어요!";
+      }
+    </script>
+  </body>
+</html>

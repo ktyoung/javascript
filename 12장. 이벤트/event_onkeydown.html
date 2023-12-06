@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input placeholder="키를 입력하세요." />
+    <p id="show"></p>
+    <script>
+      const input = document.querySelector("input");
+      let text = "";
+
+      input.addEventListener("keydown", showKey);
+
+      function showKey(e) {
+        text += e.key;
+        document.getElementById("show").innerHTML = text;
+      }
+    </script>
+  </body>
+</html>

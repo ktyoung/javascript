@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>
+      <select id="hb">
+        <option value="">선택</option>
+        <option value="여행">여행</option>
+        <option value="게임">게임</option>
+        <option value="운동">운동</option>
+      </select>
+    </label>
+    <p id="show"></p>
+    <script>
+      const x = document.getElementById("hb");
+
+      x.addEventListener("change", (event) => {
+        document.getElementById("show").innerHTML =
+          "당신의 취미는 " + event.target.value + "입니다.";
+      });
+    </script>
+  </body>
+</html>
