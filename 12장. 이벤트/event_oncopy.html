@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input1" size="80" /><br />
+    <input type="text" id="input2" size="80" /><br />
+    <input type="text" id="input3" size="80" />
+    <p id="show"></p>
+    <script>
+      const x = document.getElementById("input1");
+      const y = document.getElementById("input2");
+      const z = document.getElementById("input3");
+
+      x.value = "텍스트 선택 후 Ctrl + C를 눌러보세요.";
+      y.value = "텍스트 선택 후 Ctrl + X를 눌러보세요.";
+      z.value = "텍스트 선택 후 Ctrl + V를 눌러보세요.";
+
+      x.addEventListener("copy", func1);
+      y.addEventListener("cut", func2);
+      z.addEventListener("paste", func3);
+
+      function func1() {
+        document.getElementById("show").innerHTML = "복사하기 실행했어요!";
+      }
+      function func2() {
+        document.getElementById("show").innerHTML = "잘라내기 실행했어요!";
+      }
+      function func3() {
+        document.getElementById("show").innerHTML = "붙여넣기 실행했어요!";
+      }
+    </script>
+  </body>
+</html>
