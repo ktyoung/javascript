@@ -3303,3 +3303,358 @@ document.write(document.title); // 새로운 문서 제목
 ```
 
 ---
+
+## 12장. 이벤트
+## 12.1 이벤트란?  
+- `이벤트(event)` 는 웹 페이지에서 발생하는 사건을 의미함.
+- 이벤트를 처리하는 함수를 `이벤트 핸들러` 또는 `이벤트 리스너`라고 함.
+### 12.1.1 이벤트 핸들러  
+- 마우스 클릭이나 이동, 페이지 로드, 이미지 로드, 입력창에 데이터 입력, 키보드 누르기 등에 따라 발생하는 이벤트를 처리하기 위해 `이벤트 핸들러`를 사용함.
+- `이벤트 핸들러`는 이벤트 속성에 바로 대입하여 사용함.
+```html
+<button onclick="changeText(this)">클릭하세요!</button>
+
+<script>
+	// 이벤트 핸들러 사용 예
+	function changeText(elem) {
+		elem.innerHTML = "OK!";
+	}
+</script>
+```
+### 12.1.2 인라인 모델  
+- HTML 태그의 이벤트 속성에 코드를 직접 삽입하여 이벤트를 처리할 수 있음.
+```html
+<button onclick="document.getElementById('show').innerHTML = Date()">
+	현재 시간
+</button>
+<p id="show"></p>
+```
+### 12.1.3 이벤트 리스너  
+- `이벤트 리스너`는 `이벤트 핸들러`와 거의 동일한 개념임.
+- `이벤트 핸들러`는 특정 HTML 요소에 대해 하나만 사용 가능한 데 반해, `이벤트 리스너`는 하나의 HTML 요소에 여러 개의 이벤트 리스너를 등록하여 사용할 수 있다는 차이점이 있음.
+- `리스너`는 이벤트가 발생하길 기다렸다가 이벤트 발생 시 해당 이벤트를 처리함.
+- `addEventListener()` 메서드를 이용하여 리스너를 등록한 다음 사용함.
+```html
+<button id="btn">클릭하세요!</button>
+<p id="show"></p>
+
+<script>
+	// addEventListener()로 리스너 등록하기
+	let text = "";
+
+	document.getElementById("btn").addEventListener("click", function () {
+		text += "안녕하세요! <br />";
+		document.getElementById("show").innerHTML = text;
+	});
+
+	document.getElementById("btn").addEventListener("click", function () {
+		text += "반갑습니다! <br />";
+		document.getElementById("show").innerHTML = text;
+	});
+</script>
+```
+
+---
+## 12.2 이벤트 버블링  
+- 하나의 객체에서 발생된 이벤트가 상위 객체로 전달되는 것을 `이벤트 버블링`이라고 함.
+- 클릭 이벤트에서는 내부 요소에서 하나의 이벤트가 발생되면 상위 요소들에게까지 그 이벤트가 전달됨.
+```html
+<div onclick="alert('div입니다.')">
+	<p onclick="alert('p입니다.')">
+		<img src="img/dog.png" onclick="alert('img입니다.')" />
+	</p>
+</div>
+```
+- `event.target` 프로퍼티를 이용하면 이벤트가 제일 먼저 발생된 요소를 구별할 수 있음.
+```html
+<div onclick="func(event)">
+	<p>
+		<img src="img/dog.png" />
+	</p>
+</div>
+<span id="show"></span>
+
+<script>
+	function func(event) {
+		let text = event.target.tagName;
+		document.getElementById("show").innerHTML = text;
+	}
+</script>
+```
+
+---
+## 12.3 마우스 이벤트  
+### 12.3.1 onclick/ondblclick 이벤트  
+- `onclick` 이벤트는 사용자가 요소를 클릭했을 때, `ondblclick` 이벤트는 사용자가 요소를 더블 클릭 했을 때 발생함.
+```html
+<button onclick="showMessage1()">클릭하세요!</button>
+<button ondblclick="showMessage2()">더블 클릭하세요!</button>
+<p id="show"></p>
+
+<script>
+	function showMessage1() {
+		document.getElementById("show").innerHTML = "클릭했어요!";
+	}
+
+	function showMessage2() {
+		document.getElementById("show").innerHTML = "더블 클릭했어요!";
+	}
+</script>
+```
+### 12.3.2 onmouseover/onmouseout 이벤트  
+- `onmouseover` 이벤트는 마우스 포인터가 요소 위에 올라갔을 때, `onmouseout` 이벤트는 마우스 포인터가 요소에서 벗어날 때 발생함.
+```html
+<button onmouseover="changeBg1(this)" onmouseout="changeBg2(this)">
+	마우스를 올려보세요!
+</button>
+
+<script>
+	function changeBg1(x) {
+		x.style.backgroundColor = "yellow";
+	}
+	
+	function changeBg2(x) {
+		x.style.backgroundColor = "";
+	}
+</script>
+```
+### 12.3.3 onmouseenter 이벤트  
+- `onmouseenter` 이벤트는 마우스 포인터가 요소 안으로 진입할 때 발생함.
+- `onmouseenter` 이벤트는 자신의 요소에만 마우스가 진입했을 때 이벤트가 발생하고, `onmouseover` 이벤트는 자식 요소들과 자신의 요소에 마우스가 진입했을 때 이벤트가 발생하는 차이점이 있음.
+```html
+<style>
+	div#box1 {
+		border: solid 3px red;
+	}
+	div#box2 {
+		border: solid 3px blue;
+	}
+	p {
+		border: solid 1px black;
+	}
+</style>
+
+<div id="box1" onmouseenter="increaseX()">
+	<p>단락1</p>
+	<span id="show1"></span>
+</div>
+<div id="box2" onmouseover="increaseY()">
+	<p>단락2</p>
+	<span id="show2"></span>
+</div>
+
+<script>
+	let x = 0;
+	let y = 0;
+
+	function increaseX() {
+		x += 1;
+		document.getElementById("show1").innerHTML = x;
+	}
+
+	function increaseY() {
+		y += 1;
+		document.getElementById("show2").innerHTML = y;
+	}
+</script>
+```
+### 12.3.4 onmouseleave 이벤트  
+- `onmouseleave` 이벤트는 마우스 포인터가 요소에서 외부로 나갈 때 발생함.
+- `onmouseleave` 이벤트는 자신의 요소에서 마우스가 벗어날 때 이벤트가 발생하고, `onmouseout` 이벤트는 자식 요소들과 자신의 요소에 마우스가 벗어날 때 이벤트가 발생하는 차이점이 있음.
+```html
+<style>
+	div#box1 {
+		width: 500px;
+		border: solid 3px pink;
+	}
+	div#box2 {
+		width: 500px;
+		border: solid 3px skyblue;
+	}
+	p {
+		border: solid 1px green;
+	}
+</style>
+
+<div id="box1" onmouseleave="increaseX()">
+	<p>단락1</p>
+	<span id="show1"></span>
+</div>
+<div id="box2" onmouseout="increaseY()">
+	<p>단락2</p>
+	<span id="show2"></span>
+</div>
+
+<script>
+	let x = 0;
+	let y = 0;
+
+	function increaseX() {
+		x += 1;
+		document.getElementById("show1").innerHTML = x;
+	}
+
+	function increaseY() {
+		y += 1;
+		document.getElementById("show2").innerHTML = y;
+	}
+</script>
+```
+### 12.3.5 onmousemove 이벤트  
+- `onmousemove` 이벤트는 마우스 포인터가 요소 안에서 움직일 때 발생함.
+```html
+<style>
+	div#box {
+		width: 300px;
+		height: 200px;
+		border: solid 3px black;
+	}
+</style>
+
+<div id="box" onmousemove="showCoord(event)">
+	<p id="show"></p>
+</div>
+
+<script>
+	function showCoord(e) {
+		let text = "좌표: (" + e.clientX + ", " + e.clientY + ")";
+		document.getElementById("show").innerHTML = text;
+	}
+</script>
+```
+
+---
+## 12.4 포커스 이벤트  
+- `포커스 이벤트`는 요소가 포커스를 얻거나 잃었을 때 발생함.
+```html
+이름: <input type="text" id="name" />
+
+<script>
+	const x = document.getElementById("name");
+	x.onfocus = function () {
+		changeBg1();
+	};
+	x.onblur = function () {
+		changeBg2();
+	};
+
+	function changeBg1() {
+		x.style.backgroundColor = "yellow";
+	}
+
+	function changeBg2() {
+		x.style.backgroundColor = "gray";
+	}
+</script>
+```
+
+---
+## 12.5 키보드 이벤트  
+### 12.5.1 onkeydown 이벤트  
+- `onkeydown` 이벤트는 사용자가 키보드 키를 눌렀을 때 발생함.
+```html
+<input placeholder="키를 입력하세요." />
+<p id="show"></p>
+
+<script>
+	const input = document.querySelector("input");
+	let text = "";
+
+	input.addEventListener("keydown", showKey);
+
+	function showKey(e) {
+		text += e.key;
+		document.getElementById("show").innerHTML = text;
+	}
+</script>
+```
+### 12.5.2 onkeyup 이벤트  
+- `onkeyup` 이벤트는 사용자가 키보드 키를 눌렀다 떼었을 때 발생함.
+```html
+<input type="text" placeholder="키를 입력하세요." />
+
+<script>
+	const input = document.querySelector("input");
+	
+	input.addEventListener("keyup", changeUpper);
+
+	function changeUpper() {
+		input.value = input.value.toUpperCase();
+	}
+</script>
+```
+
+---
+## 12.6 기타 이벤트  
+### 12.6.1 onchange 이벤트  
+- `onchange` 이벤트는 요소의 값이 변경되었을 때 발생함.
+```html
+<label>
+	<select id="hb">
+		<option value="">선택</option>
+		<option value="여행">여행</option>
+		<option value="게임">게임</option>
+		<option value="운동">운동</option>
+	</select>
+</label>
+<p id="show"></p>
+
+<script>
+	const x = document.getElementById("hb");
+
+	x.addEventListener("change", (event) => {
+		document.getElementById("show").innerHTML =
+			"당신의 취미는 " + event.target.value + "입니다.";
+	});
+</script>
+```
+### 12.6.2 onload 이벤트  
+- `onload` 이벤트는 객체가 로드된 직후 발생함.
+- `onload` 이벤트는 사용자의 브라우저 형태, 브라우저 버전을 체크해서 웹 페이지가 정상적으로 동작하게 하는 데 사용될 수 있음.
+```html
+<body onload="func()">
+	<p id="show"></p>
+	
+	<script>
+		function func() {
+			document.getElementById("show").innerHTML = "페이지가 로드되었습니다!";
+		}
+	</script>
+</body>
+```
+### 12.6.3 oncopy/oncut/onpaste 이벤트  
+- `oncopy` 이벤트는 브라우저에서 텍스트나 이미지와 같은 요소를 복사할 때 발생함.
+- `oncut` 이벤트는 요소에 대해 오려두기 작업이 실행될 때 발생함.
+- `onpaste` 이벤트는 요소에 대해 붙여넣기 작업이 실행될 때 발생함.
+```html
+<input type="text" id="input1" size="80" /><br />
+<input type="text" id="input2" size="80" /><br />
+<input type="text" id="input3" size="80" />
+<p id="show"></p>
+
+<script>
+	const x = document.getElementById("input1");
+	const y = document.getElementById("input2");
+	const z = document.getElementById("input3");
+
+	x.value = "텍스트 선택 후 Ctrl + C를 눌러보세요.";
+	y.value = "텍스트 선택 후 Ctrl + X를 눌러보세요.";
+	z.value = "텍스트 선택 후 Ctrl + V를 눌러보세요.";
+
+	x.addEventListener("copy", func1);
+	y.addEventListener("cut", func2);
+	z.addEventListener("paste", func3);
+
+	function func1() {
+		document.getElementById("show").innerHTML = "복사하기 실행했어요!";
+	}
+	function func2() {
+		document.getElementById("show").innerHTML = "잘라내기 실행했어요!";
+	}
+	function func3() {
+		document.getElementById("show").innerHTML = "붙여넣기 실행했어요!";
+	}
+</script>
+```
+
+---
