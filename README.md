@@ -3658,3 +3658,228 @@ document.write(document.title); // 새로운 문서 제목
 ```
 
 ---
+
+## 13장. 브라우저 객체 모델(BOM)
+## 13.1 브라우저 객체 모델(BOM)이란?  
+- 브라우저에 대한 정보를 이용하거나 브라우저를 제어하려고 할 때 필요한 것이 `브라우저 객체 모델(Browser Object Model, BOM)`임.
+- 브라우저에 관련된 객체를 통하여 모든 정보와 기능을 제공함.
+
+---
+## 13.2 Window 객체  
+- `Window` 객체는 브라우저 창을 의미하는 객체로, 자바스크립트에서 사용하는 모든 객체, 전역 함수, 전역 변수들은 모두 자동으로 `Window` 객체의 프로퍼티가 됨.
+- `Window` 객체의 메서드는 전역 함수이며, `Window` 객체의 프로퍼티는 전역 변수가 됨.
+- `Window` 객체는 모든 객체들의 조상이기 때문에, `window` 표기를 생략할 수 있음.
+- 예를 들어, `window.alert()`, `window.open()` 등은 `alert()`, `open()`과 같이 사용하는 것이 가능함.
+### 13.2.1 새창 열기  
+- `open()` 메서드는 브라우저에서 새 창을 여는 데 사용됨.
+```html
+<button onclick="newWin()">새 창 열기</button>
+
+<script>
+	function newWin() {
+		window.open("https://google.com");
+	}
+</script>
+```
+- 브라우저 창의 크기, 스크롤바 등을 설정할 수 있음.
+```html
+<button onclick="newWin()">구글 새 창 열기</button>
+
+<script>
+	function newWin() {
+		window.open(
+			"https://google.com",
+			"_blank",
+			"toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400"
+		);
+	}
+</script>
+```
+### 13.2.2 창 닫기  
+- `close()` 메서드는 브라우저에서 창을 닫는 데 사용됨.
+```html
+<button onclick="newWin()">새 창 열기</button> <br />
+<button onclick="closeWin()">창 닫기</button>
+
+<script>
+	function newWin() {
+		window.open("https://google.com");
+	}
+
+	function closeWin() {
+		window.close();
+	}
+</script>
+```
+### 13.2.3 창 크기 가져오기  
+- `innerWidth / innerHeight`와 `outerWidth / outerHeight` 프로퍼티를 이용하면 브라우저 창의 크기에 대한 정보를 가져올 수 있음.
+- `innerWidth / innerHeight` 프로퍼티는 브라우저 창 틀을 제외하고 스크롤을 포함한 창의 너비와 높이를, `outerWidth / outerHeight`는 브라우저 창의 전체 너비와 높이를 나타냄.
+```js
+document.write("innerWidth: " + window.innerWidth + "px<br />");
+document.write("innerHeight: " + window.innerHeight + "px<br />");
+document.write("outerWidth: " + window.outerWidth + "px<br />");
+document.write("outerHeight: " + window.outerHeight + "px");
+```
+
+---
+## 13.3 Screen 객체  
+- `Screen` 객체는 사용자의 컴퓨터 모니터 화면에 관련된 정보를 담고 있음.
+### 13.3.1 모니터 화면의 너비와 높이  
+- `Screen` 객체의 `width`와 `height` 프로퍼티는 사용자 모니터 화면의 너비와 높이를 픽셀 단위로 나타냄.
+```js
+document.write("screen.width: " + screen.width + "px<br />");
+document.write("screen.height: " + screen.height + "px");
+```
+### 13.3.2 모니터 색상당 비트 수  
+- `colorDepth` 프로퍼티는 사용자 모니터 화면의 색상을 표현하는 비트 수를 얻는 데 사용됨.
+```js
+document.write("색상당 비트 수: " + screen.colorDepth);
+```
+
+---
+## 13.4 Location 객체  
+- `Location` 객체는 브라우저의 현재 페이지에 해당하는 URL 주소를 얻거나 현재 페이지에 새로운 문서를 불러올 때 사용됨.
+- 현재 문서의 경로와 사용 중인 호스트의 이름을 가져올 수 있음.
+### 13.4.1 웹 페이지의 URL 주소  
+- `Location` 객체의 `href` 프로퍼티를 이용하면 현재 웹 페이지의 URL 주소를 가져올 수 있음.
+```js
+document.write(location.href);
+```
+- `href` 프로퍼티는 특정 URL 주소를 설정하는 데에도 사용됨.
+```html
+<button onclick="setURL()">URL 설정하기</button>
+
+<script>
+	function setURL() {
+		location.href = "https://google.com";
+	}
+</script>
+```
+### 13.4.2 파일 경로 가져오기  
+- `pathname` 프로퍼티를 이용하면 현재 문서의 파일 경로를 가져올 수 있음.
+```js
+document.write(location.pathname);
+```
+### 13.4.3 호스트 이름 가져오기  
+- `hostname` 프로퍼티를 이용하면 현재 문서의 호스트, 즉 서버 컴퓨터의 이름을 가져올 수 있음.
+```js
+document.write(location.hostname);
+```
+### 13.4.4 새로운 문서 불러오기  
+- `assign()` 메서드는 현재 웹 페이지에서 새로운 문서를 불러올 때 사용됨.
+```html
+<button onclick="loadDoc()">새로운 문서 불러오기</button>
+
+<script>
+	function loadDoc() {
+		location.assign("https://google.com");
+	}
+</script>
+```
+
+---
+## 13.5 History 객체  
+- `History` 객체는 브라우저에서 방문한 기록, 즉 히스토리 목록을 저장하고 관리하는 데 사용됨.
+- 사용자의 개인 정보 보호를 위해 이 객체에 접근할 수 있는 권한이 일부 제한됨.
+### 13.5.1 히스토리 목록 개수 알아보기  
+- `History` 객체의 `length` 프로퍼티는 히스토리 목록에 저장된 URL 주소의 개수를 얻는 데 사용됨.
+```js
+document.write(history.length);
+```
+### 13.5.2 히스토리 목록 접근하기  
+- `go()`, `back()`, `forward()` 메서드로 저장된 히스토리 목록에 접근할 수 있음.
+- `go(-2)`는 이전 이전 페이지로 이동함.
+- `back()` 메서드는 `go(-1)` 메서드와 마찬가지로 이전 페이지로 이동함.
+- `forward()` 메서드는 다음 페이지로 이동하는 데 사용됨.
+```html
+<button onclick="goPage()">2 페이지 이전</button>
+
+<script>
+	function goPage() {
+		history.go(-2);
+	}
+</script>
+```
+
+---
+## 13.6 Navigator 객체  
+- `Navigator` 객체는 브라우저에 관련된 정보를 담고 있는 객체임.
+```js
+// 브라우저 코드 이름
+document.write("- appCodeName 프로퍼티: " + navigator.appCodeName + "<br />");
+
+// 브라우저 이름
+document.write("- appName 프로퍼티: " + navigator.appName + "<br />");
+
+// 브라우저 버전
+document.write("- appVersion 프로퍼티: " + navigator.appVersion + "<br />");
+
+// 브라우저 언어
+document.write("- language 프로퍼티: " + navigator.language + "<br />");
+
+// 브라우저가 실행되는 운영체제
+document.write("- platform 프로퍼티: " + navigator.platform + "<br />");
+
+// 쿠키 사용 여부
+document.write("- cookieEnabled 프로퍼티: " + navigator.cookieEnabled + "<br />");
+
+// 브라우저 온라인 여부
+document.write("- onLine 프로퍼티: " + navigator.onLine + "<br />");
+
+// 브라우저가 서버에 보낸 브라우저 관련 user-agent 헤더 정보
+document.write("- userAgent 프로퍼티: " + navigator.userAgent);
+```
+
+---
+## 13.7 타이머 메서드  
+### 13.7.1 setTimeout() 메서드  
+- `setTimeout()` 메서드는 밀리초가 경과한 후 특정 함수를 실행함.
+- 첫 번째 매개변수는 실행할 함수를 나타내고, 두 번째 매개변수는 실행이 지연되는 밀리초 단위의 시간을 의미함.
+```html
+<button onclick="setTimeout(func1, 2000)">2초 후 실행</button>
+
+<script>
+	function func1() {
+		alert("안녕하세요!");
+	}
+</script>
+```
+- `setTimeout()` 메서드에 의해 실행된 함수를 중간에 중지시키려면 `clearTimeout()` 메서드를 사용함.
+```html
+<button onclick="execFunc = setTimeout(func1, 3000)">3초 후 실행</button>
+<button onclick="clearTimeout(execFunc)">실행 중지</button>
+
+<script>
+	function func1() {
+		alert("안녕하세요!");
+	}
+</script>
+```
+### 13.7.2 setInterval() 메서드
+- `setInterval()` 메서드는 주어진 시간 간격마다 특정 함수를 반복 실행함.
+```html
+<p id="show"></p>
+
+<script>
+	setInterval(func1, 1000);
+
+	function func1() {
+		const d = new Date();
+		document.getElementById("show").innerHTML = d;
+	}
+</script>
+```
+- `clearInterval()` 메서드는 `setInterval()`에 의해 반복 실행 중인 함수를 중지시키는 데 사용됨.
+```html
+<p id="show"></p>
+<button onclick="clearInterval(execTimer)">타이머 중지</button>
+
+<script>
+	let execTimer = setInterval(func1, 1000);
+
+	function func1() {
+		const d = new Date();
+		document.getElementById("show").innerHTML = d;
+	}
+</script>
+```
